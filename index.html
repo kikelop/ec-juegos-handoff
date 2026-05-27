@@ -167,6 +167,131 @@
 
       </div>
 
+
+      <!-- ==============================
+           A1 · STREAK STRIP · racha del usuario
+           Solo mostrar a usuarios logueados con racha activa.
+           ============================== -->
+      <section class="streak" aria-label="Tu racha diaria">
+        <div class="streak__left">
+          <span class="streak__flame" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+              <path d="M13.5.67s.74 2.65.74 4.8c0 2.06-1.35 3.73-3.41 3.73-2.07 0-3.63-1.67-3.63-3.73l.03-.36C5.21 7.51 4 10.62 4 14c0 4.42 3.58 8 8 8s8-3.58 8-8C20 8.61 17.41 3.8 13.5.67zM11.71 19c-1.78 0-3.22-1.4-3.22-3.14 0-1.62 1.05-2.76 2.81-3.12 1.77-.36 3.6-1.21 4.62-2.58.39 1.29.59 2.65.59 4.04 0 2.65-2.15 4.8-4.8 4.8z"/>
+            </svg>
+          </span>
+          <div class="streak__copy">
+            <h2 class="streak__title">Llevas 12 días seguidos</h2>
+            <p class="streak__sub">Resuelve el de hoy antes de medianoche para mantener la racha.</p>
+          </div>
+        </div>
+        <div class="streak__counter">
+          <span class="streak__count">12</span>
+          <span class="streak__unit">días</span>
+        </div>
+      </section>
+
+
+      <!-- ==============================
+           A3 · ARCHIVO · partidas anteriores
+           Últimos 7 días. Estado de los 4 juegos cada día.
+           No-suscriptores ven el grid pero el paywall corta el archivo más allá.
+           ============================== -->
+      <section class="archive" aria-labelledby="archive-title">
+        <header class="archive__head">
+          <h2 id="archive-title" class="archive__title">Tu última semana</h2>
+          <a class="archive__link" href="#">Ver archivo completo →</a>
+        </header>
+
+        <div class="archive__grid" role="list">
+
+          <a class="archive__day" href="#" role="listitem" aria-label="Jueves 21 · 4 de 4 juegos completados">
+            <span class="archive__day-label">Jue</span>
+            <span class="archive__day-date">21</span>
+            <span class="archive__dots" aria-hidden="true">
+              <span class="archive__dot archive__dot--done"></span>
+              <span class="archive__dot archive__dot--done"></span>
+              <span class="archive__dot archive__dot--done"></span>
+              <span class="archive__dot archive__dot--done"></span>
+            </span>
+          </a>
+
+          <a class="archive__day" href="#" role="listitem" aria-label="Viernes 22 · 3 de 4 juegos completados">
+            <span class="archive__day-label">Vie</span>
+            <span class="archive__day-date">22</span>
+            <span class="archive__dots" aria-hidden="true">
+              <span class="archive__dot archive__dot--done"></span>
+              <span class="archive__dot archive__dot--done"></span>
+              <span class="archive__dot archive__dot--done"></span>
+              <span class="archive__dot"></span>
+            </span>
+          </a>
+
+          <a class="archive__day" href="#" role="listitem" aria-label="Sábado 23 · 4 de 4 juegos completados">
+            <span class="archive__day-label">Sáb</span>
+            <span class="archive__day-date">23</span>
+            <span class="archive__dots" aria-hidden="true">
+              <span class="archive__dot archive__dot--done"></span>
+              <span class="archive__dot archive__dot--done"></span>
+              <span class="archive__dot archive__dot--done"></span>
+              <span class="archive__dot archive__dot--done"></span>
+            </span>
+          </a>
+
+          <a class="archive__day" href="#" role="listitem" aria-label="Domingo 24 · 2 de 4 juegos completados">
+            <span class="archive__day-label">Dom</span>
+            <span class="archive__day-date">24</span>
+            <span class="archive__dots" aria-hidden="true">
+              <span class="archive__dot archive__dot--done"></span>
+              <span class="archive__dot archive__dot--done"></span>
+              <span class="archive__dot"></span>
+              <span class="archive__dot"></span>
+            </span>
+          </a>
+
+          <a class="archive__day" href="#" role="listitem" aria-label="Lunes 25 · 4 de 4 juegos completados">
+            <span class="archive__day-label">Lun</span>
+            <span class="archive__day-date">25</span>
+            <span class="archive__dots" aria-hidden="true">
+              <span class="archive__dot archive__dot--done"></span>
+              <span class="archive__dot archive__dot--done"></span>
+              <span class="archive__dot archive__dot--done"></span>
+              <span class="archive__dot archive__dot--done"></span>
+            </span>
+          </a>
+
+          <a class="archive__day" href="#" role="listitem" aria-label="Martes 26 · 4 de 4 juegos completados">
+            <span class="archive__day-label">Mar</span>
+            <span class="archive__day-date">26</span>
+            <span class="archive__dots" aria-hidden="true">
+              <span class="archive__dot archive__dot--done"></span>
+              <span class="archive__dot archive__dot--done"></span>
+              <span class="archive__dot archive__dot--done"></span>
+              <span class="archive__dot archive__dot--done"></span>
+            </span>
+          </a>
+
+          <a class="archive__day archive__day--today" href="#" role="listitem" aria-label="Hoy miércoles 27 · 1 de 4 juegos completados">
+            <span class="archive__day-label">Hoy</span>
+            <span class="archive__day-date">27</span>
+            <span class="archive__dots" aria-hidden="true">
+              <span class="archive__dot archive__dot--done"></span>
+              <span class="archive__dot"></span>
+              <span class="archive__dot"></span>
+              <span class="archive__dot"></span>
+            </span>
+          </a>
+
+        </div>
+
+        <!-- Paywall suave para no-suscriptores. Se oculta si el usuario está suscrito. -->
+        <div class="archive__paywall">
+          <p class="archive__paywall-copy">
+            <strong>Hazte suscriptor</strong> y juega cualquier crucigrama, sudoku, palabra del día o autodefinido de los últimos 12 meses.
+          </p>
+          <a class="btn btn--dark" href="#">Suscribirme</a>
+        </div>
+      </section>
+
     </div>
   </main>
 

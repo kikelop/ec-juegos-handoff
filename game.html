@@ -39,9 +39,21 @@
         <!-- COLUMNA IZQUIERDA · BALCÓN + SLOT DE JUEGO -->
         <section aria-labelledby="game-title">
 
-          <!-- Balcón de sección: nombre del juego con underline editorial -->
+          <!-- Balcón de sección + metadatos (B1) -->
           <header class="game-balcony">
-            <h1 id="game-title" class="game-balcony__title">Crucigrama</h1>
+            <div class="game-balcony__row">
+              <h1 id="game-title" class="game-balcony__title">Crucigrama</h1>
+              <span class="game-balcony__meta">
+                <strong>Nº 1.247</strong>
+                <span>·</span>
+                <span>27 de mayo de 2026</span>
+              </span>
+            </div>
+            <div class="game-balcony__stats">
+              <span class="game-balcony__stat">⏱ <strong>8'12"</strong> de media</span>
+              <span class="game-balcony__stat">✓ <strong>78%</strong> lo terminan</span>
+              <span class="game-balcony__stat">🔥 <strong>3.241</strong> jugadores hoy</span>
+            </div>
           </header>
 
           <!-- SLOT DEL JUEGO
@@ -80,6 +92,58 @@
        FOOTER
        ============================== -->
   <footer class="site-footer">Footer</footer>
+
+
+  <!-- ==============================
+       B3 + C2 · MODAL POST-PARTIDA
+       Se muestra al terminar el juego. En producción, abrir con JS cuando
+       el motor del juego emita el evento `game:completed`.
+       Para el handoff lo dejamos visible por defecto — añadir
+       `hidden` al modal raíz cuando se integre con el motor real.
+       ============================== -->
+  <div class="post-modal" id="post-modal" role="dialog" aria-modal="true" aria-labelledby="post-modal-title">
+    <div class="post-modal__panel">
+
+      <button class="post-modal__close" type="button" aria-label="Cerrar"
+              onclick="document.getElementById('post-modal').setAttribute('hidden','')">×</button>
+
+      <header class="post-modal__head">
+        <div class="post-modal__eyebrow">¡Resuelto!</div>
+        <h2 id="post-modal-title" class="post-modal__title">Crucigrama del miércoles</h2>
+      </header>
+
+      <!-- Compartible sin spoiler. El template de cuadraditos lo genera el motor. -->
+      <div class="post-modal__share">
+        <div class="post-modal__grid" aria-label="Resultado para compartir">🟩🟩⬜🟩🟩<br>⬜🟩⬜🟩⬜<br>🟩🟩🟩🟩🟩</div>
+        <button class="btn btn--dark" type="button"
+                onclick="navigator.clipboard.writeText('🟩🟩⬜🟩🟩\n⬜🟩⬜🟩⬜\n🟩🟩🟩🟩🟩\n\nEC Crucigrama #1247 · 12&#39;34&quot;\nelconfidencial.com/juegos').then(()=>{this.textContent='Copiado ✓'})">
+          Copiar resultado
+        </button>
+      </div>
+
+      <div class="post-modal__stats">
+        <div class="post-modal__stat">
+          <span class="post-modal__stat-num">12'34"</span>
+          <span class="post-modal__stat-label">Tu tiempo</span>
+        </div>
+        <div class="post-modal__stat">
+          <span class="post-modal__stat-num">8'12"</span>
+          <span class="post-modal__stat-label">Media</span>
+        </div>
+        <div class="post-modal__stat">
+          <span class="post-modal__stat-num">13</span>
+          <span class="post-modal__stat-label">Días de racha</span>
+        </div>
+      </div>
+
+      <footer class="post-modal__actions">
+        <a class="btn btn--dark" href="./game.html?juego=sudoku">Probar el Sudoku de hoy</a>
+        <button class="btn" type="button"
+                onclick="document.getElementById('post-modal').setAttribute('hidden','')">Volver mañana</button>
+      </footer>
+
+    </div>
+  </div>
 
 </div>
 </body>

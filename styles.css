@@ -382,24 +382,73 @@ a {
 }
 
 
-/* ----------  PÁGINA DE JUEGO · Balcón de sección  ---------- */
+/* ----------  PÁGINA DE JUEGO · Balcón de sección + metadatos (B1)  ---------- */
 
 .game-balcony {
   border-bottom: 0.7px solid var(--border-subtle);
   margin-bottom: var(--space-24);
 }
 
+.game-balcony__row {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--space-16);
+  flex-wrap: wrap;
+}
+
 .game-balcony__title {
   display: inline-block;
   padding-bottom: var(--space-12);
-  margin: 0 0 -1px;                /* solapa la línea fina */
+  margin: 0 0 -1px;
   border-bottom: 4px solid var(--text-primary);
   font-family: "Confi Sans";
   font-weight: 700;
-  font-size: 22px;                 /* token Figma "Titulo balcón sección" */
+  font-size: 22px;
   line-height: 1.2;
   letter-spacing: 0;
   color: var(--text-primary);
+}
+
+.game-balcony__meta {
+  font-family: "Confi Sans";
+  font-weight: 400;
+  font-size: 13px;
+  color: var(--text-secondary);
+  padding-bottom: var(--space-12);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-8);
+}
+
+.game-balcony__meta strong {
+  color: var(--text-primary);
+  font-weight: 700;
+}
+
+.game-balcony__stats {
+  display: flex;
+  gap: var(--space-24);
+  margin-top: var(--space-16);
+  padding-bottom: var(--space-4, 4px);
+  font-family: "Confi Sans";
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+.game-balcony__stat {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.game-balcony__stat strong {
+  color: var(--text-primary);
+  font-weight: 700;
+}
+
+@media (max-width: 600px) {
+  .game-balcony__stats { gap: var(--space-16); flex-wrap: wrap; }
 }
 
 
@@ -422,6 +471,359 @@ a {
 
 @media (min-width: 900px) {
   .game-slot { aspect-ratio: 4 / 5; min-height: 600px; }
+}
+
+
+/* ----------  STREAK STRIP · landing (A1)  ---------- */
+
+.streak {
+  margin-top: var(--space-48);
+  background: var(--text-primary);
+  color: var(--neutral-0);
+  border-radius: var(--radius-md);
+  padding: var(--space-32) var(--space-40);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-24);
+  flex-wrap: wrap;
+}
+
+.streak__left {
+  display: flex;
+  align-items: center;
+  gap: var(--space-20);
+  flex: 1;
+}
+
+.streak__flame {
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  color: var(--neutral-0);
+}
+
+.streak__flame svg { width: 100%; height: 100%; display: block; }
+
+.streak__title {
+  font-family: "Confi Serif";
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 1.2;
+  margin: 0 0 4px;
+  color: var(--neutral-0);
+  letter-spacing: -0.3px;
+}
+
+.streak__sub {
+  font-family: "Confi Sans";
+  font-weight: 400;
+  font-size: 14px;
+  color: var(--steel-150);
+  margin: 0;
+}
+
+.streak__counter {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  flex-shrink: 0;
+}
+
+.streak__count {
+  font-family: "Confi Serif";
+  font-weight: 700;
+  font-size: 64px;
+  line-height: 1;
+  color: var(--neutral-0);
+}
+
+.streak__unit {
+  font-family: "Confi Sans";
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  color: var(--steel-150);
+  margin-top: 4px;
+}
+
+@media (max-width: 600px) {
+  .streak { padding: var(--space-24) var(--space-20); }
+  .streak__count { font-size: 48px; }
+  .streak__title { font-size: 20px; }
+}
+
+
+/* ----------  ARCHIVO · partidas anteriores (A3)  ---------- */
+
+.archive {
+  margin-top: var(--space-48);
+}
+
+.archive__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: var(--space-20);
+  gap: var(--space-16);
+  flex-wrap: wrap;
+}
+
+.archive__title {
+  font-family: "Confi Serif";
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 1.2;
+  margin: 0;
+  letter-spacing: -0.2px;
+}
+
+.archive__link {
+  font-family: "Confi Sans";
+  font-weight: 500;
+  font-size: 14px;
+  color: var(--link-default);
+  text-decoration: none;
+}
+
+.archive__link:hover { opacity: 0.7; }
+
+.archive__grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: var(--space-8);
+}
+
+@media (max-width: 900px) {
+  .archive__grid { grid-template-columns: repeat(4, 1fr); }
+}
+@media (max-width: 600px) {
+  .archive__grid {
+    grid-template-columns: repeat(7, minmax(120px, 1fr));
+    overflow-x: auto;
+    padding-bottom: var(--space-8);
+  }
+}
+
+.archive__day {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-12);
+  padding: var(--space-16) var(--space-12);
+  border: 0.7px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  background: var(--neutral-0);
+  text-decoration: none;
+  color: var(--text-primary);
+  transition: opacity 0.12s ease;
+}
+
+.archive__day:hover { opacity: 0.7; }
+
+.archive__day--today {
+  background: var(--text-primary);
+  color: var(--neutral-0);
+  border-color: var(--text-primary);
+}
+
+.archive__day-label {
+  font-family: "Confi Sans";
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  color: inherit;
+  opacity: 0.7;
+}
+
+.archive__day-date {
+  font-family: "Confi Serif";
+  font-weight: 700;
+  font-size: 22px;
+  line-height: 1;
+  color: inherit;
+}
+
+.archive__dots {
+  display: flex;
+  gap: 4px;
+  margin-top: var(--space-8);
+}
+
+.archive__dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  border: 1px solid var(--border-subtle);
+  background: transparent;
+}
+
+.archive__dot--done {
+  background: currentColor;
+  border-color: currentColor;
+}
+
+.archive__day--today .archive__dot {
+  border-color: var(--steel-150);
+}
+
+.archive__paywall {
+  margin-top: var(--space-24);
+  padding: var(--space-24) var(--space-32);
+  border: 0.7px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  background: var(--neutral-25);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-24);
+  flex-wrap: wrap;
+}
+
+.archive__paywall-copy {
+  font-family: "Confi Sans";
+  font-size: 14px;
+  color: var(--text-secondary);
+  max-width: 520px;
+}
+
+.archive__paywall-copy strong {
+  color: var(--text-primary);
+  font-weight: 700;
+}
+
+.archive__paywall .btn {
+  width: auto;
+  flex-shrink: 0;
+}
+
+
+/* ----------  MODAL POST-PARTIDA · game.html (B3 + C2)  ---------- */
+
+.post-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(18, 18, 18, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-24);
+  z-index: 100;
+}
+
+.post-modal__panel {
+  position: relative;
+  background: var(--neutral-0);
+  border-radius: var(--radius-md);
+  max-width: 480px;
+  width: 100%;
+  padding: var(--space-40) var(--space-32);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-24);
+  max-height: calc(100vh - 48px);
+  overflow-y: auto;
+}
+
+.post-modal__close {
+  position: absolute;
+  top: var(--space-16);
+  right: var(--space-16);
+  background: transparent;
+  border: 0;
+  color: var(--text-secondary);
+  font-size: 24px;
+  line-height: 1;
+  cursor: pointer;
+  padding: 8px;
+}
+
+.post-modal__close:hover { opacity: 0.7; }
+
+.post-modal__head {
+  text-align: center;
+}
+
+.post-modal__eyebrow {
+  font-family: "Confi Sans";
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  margin-bottom: var(--space-8);
+}
+
+.post-modal__title {
+  font-family: "Confi Serif";
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 1.1;
+  margin: 0;
+  letter-spacing: -0.5px;
+}
+
+.post-modal__share {
+  background: var(--neutral-25);
+  border-radius: var(--radius-md);
+  padding: var(--space-24);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-16);
+}
+
+.post-modal__grid {
+  font-size: 24px;
+  line-height: 1.4;
+  letter-spacing: 2px;
+  text-align: center;
+}
+
+.post-modal__stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-12);
+  padding: var(--space-16) 0;
+  border-top: 0.7px solid var(--border-subtle);
+  border-bottom: 0.7px solid var(--border-subtle);
+}
+
+.post-modal__stat {
+  text-align: center;
+}
+
+.post-modal__stat-num {
+  display: block;
+  font-family: "Confi Serif";
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 1.1;
+  color: var(--text-primary);
+}
+
+.post-modal__stat-label {
+  display: block;
+  font-family: "Confi Sans";
+  font-size: 11px;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  margin-top: 4px;
+}
+
+.post-modal__actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+}
+
+@media (max-width: 600px) {
+  .post-modal__panel { padding: var(--space-32) var(--space-20); }
+  .post-modal__title { font-size: 26px; }
+  .post-modal__grid { font-size: 20px; }
+  .post-modal__stat-num { font-size: 20px; }
 }
 
 
