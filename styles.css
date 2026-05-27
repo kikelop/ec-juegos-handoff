@@ -1,0 +1,442 @@
+/* ==========================================================================
+   EC Juegos · Estilos compartidos
+   Sistema de diseño: SDD Suscripciones · Marshall 3 · Confi Serif/Sans
+   Fuentes: ./fonts/  ·  Iconos: ./svg/
+   Single source of truth de tokens: SDD CONTEXT.md
+   ========================================================================== */
+
+
+/* ----------  FUENTES Confi  ---------- */
+
+@font-face {
+  font-family: "Confi Serif";
+  src: url("./fonts/ConfiSerif-700-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Confi Serif";
+  src: url("./fonts/ConfiSerif-400-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Confi Sans";
+  src: url("./fonts/ConfiSans-700-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Confi Sans";
+  src: url("./fonts/ConfiSans-500-Medium.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Confi Sans";
+  src: url("./fonts/ConfiSans-400-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+
+/* ----------  TOKENS Marshall 3  ---------- */
+
+:root {
+  /* Semánticos */
+  --text-primary:     #121212;
+  --text-secondary:   #737373;
+  --text-tertiary:    #a3a3a3;
+  --link-default:     #2380be;
+  --border-subtle:    #bfc7ce;
+
+  /* Neutrales */
+  --neutral-0:        #ffffff;
+  --neutral-25:       #f9f9f9;
+  --neutral-50:       #efefef;
+  --neutral-100:      #e2e2e2;
+
+  /* Steel */
+  --steel-150:        #d2d8dd;
+  --steel-200:        #bfc7ce;
+
+  /* Fondos card-head — vinculados a las variables Figma del frame `612:2539` */
+  --bg-crucigrama:    var(--neutral-0);    /* Core/Neutral/0   · #ffffff */
+  --bg-sudoku:        var(--steel-150);    /* Core/Steel/150   · #d2d8dd */
+  --bg-wordle:        var(--steel-150);    /* Core/Steel/150   · #d2d8dd */
+  --bg-autodefinidos: var(--steel-150);    /* Core/Steel/150   · #d2d8dd */
+
+  /* Botón "Jugar" oscuro · DEUDA SDD §15.11
+     El SDD canónico tiene Button.featured con bg Steel/200. Aquí Figma usa
+     un negro/azul muy oscuro full-width estilo "Continuar". Se mapea a
+     Blue/900 #0f2124 (Marshall 3). Pendiente abrir D nueva. */
+  --btn-dark:         #0f2124;
+  --btn-dark-hover:   #1d4044;        /* Blue/700 */
+
+  /* Spacing — escala oficial §5.5 */
+  --space-8:  8px;
+  --space-12: 12px;
+  --space-16: 16px;
+  --space-20: 20px;
+  --space-24: 24px;
+  --space-32: 32px;
+  --space-40: 40px;
+  --space-48: 48px;
+  --space-64: 64px;
+
+  /* Radius */
+  --radius-sm: 2px;
+  --radius-md: 4px;
+  --radius-lg: 8px;
+}
+
+
+/* ----------  RESET MÍNIMO  ---------- */
+
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--neutral-0);
+  color: var(--text-primary);
+  font-family: "Confi Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 15px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+button {
+  font-family: inherit;
+  font-size: inherit;
+  cursor: pointer;
+  border: 0;
+  background: transparent;
+  padding: 0;
+  color: inherit;
+}
+
+a {
+  color: var(--link-default);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+
+/* ----------  LAYOUT contenedor  ---------- */
+
+.layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.container {
+  width: 100%;
+  max-width: 1280px;
+  margin-inline: auto;
+  padding-inline: var(--space-24);
+}
+
+@media (max-width: 600px) {
+  .container { padding-inline: var(--space-16); }
+}
+
+
+/* ----------  HEADER  ---------- */
+
+.site-header {
+  border-bottom: 0.7px solid var(--border-subtle);
+}
+
+.site-header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-block: var(--space-20);
+}
+
+.site-header__logo {
+  font-family: "Confi Serif";
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 1;
+  color: var(--text-primary);
+  letter-spacing: -0.5px;
+  text-decoration: none;
+}
+
+
+/* ----------  HERO  ---------- */
+
+.hero {
+  text-align: center;
+  padding-block: var(--space-24) var(--space-32);
+}
+
+.hero__title {
+  font-family: "Confi Serif";
+  font-weight: 700;
+  font-size: 40px;     /* h2 token §5.1 */
+  line-height: 1.1;
+  letter-spacing: -1px;
+  color: var(--text-primary);
+  margin: 0 0 var(--space-8);
+}
+
+.hero__subtitle {
+  font-family: "Confi Sans";
+  font-weight: 400;
+  font-size: 15px;     /* parrafo §5.1 */
+  color: var(--text-secondary);
+  margin: 0;
+  max-width: 720px;
+  margin-inline: auto;
+}
+
+@media (max-width: 600px) {
+  .hero { padding-block: var(--space-16) var(--space-24); }
+  .hero__title { font-size: 32px; }      /* h3 token §5.1 */
+}
+
+
+/* ----------  PUBLICIDAD (placeholders)  ---------- */
+
+.ad {
+  background: var(--neutral-25);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: var(--space-16);
+}
+
+.ad__slot {
+  width: 100%;
+  background: #ffa7a7;            /* Red/600 — visualiza placeholder */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--neutral-0);
+  font-weight: 700;
+}
+
+.ad__slot--billboard { aspect-ratio: 970 / 250; }
+.ad__slot--sidebar   { aspect-ratio: 300 / 600; }
+
+.ad__label {
+  margin-top: var(--space-12);
+  font-family: "Confi Sans";
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+}
+
+
+/* ----------  SECCIÓN PRINCIPAL CON ASIDE  ---------- */
+
+.main {
+  flex: 1;
+  padding-block: var(--space-24) var(--space-64);
+}
+
+.main__row {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: var(--space-32);
+  margin-top: var(--space-48);
+}
+
+.main__aside {
+  position: sticky;
+  top: var(--space-24);
+  align-self: start;
+}
+
+@media (max-width: 900px) {
+  .main__row {
+    grid-template-columns: 1fr;
+    gap: var(--space-32);
+  }
+  .main__aside { position: static; }
+  .ad__slot--sidebar { aspect-ratio: 970 / 250; }
+}
+
+
+/* ----------  GRID DE CARDS DE JUEGO  ---------- */
+
+.games-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-16);
+}
+
+@media (max-width: 600px) {
+  .games-grid { grid-template-columns: 1fr; }
+}
+
+
+/* ----------  CARD DE JUEGO  ---------- */
+
+.game-card {
+  display: flex;
+  flex-direction: column;
+  border: 0.7px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  background: var(--neutral-0);
+  overflow: hidden;
+}
+
+.game-card__head {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-16);
+  padding: var(--space-40) var(--space-24);
+  min-height: 260px;
+  border-bottom: 0.7px solid var(--border-subtle);
+  --ink: var(--text-primary);
+  color: var(--ink);
+}
+
+.game-card__head--crucigrama    { background: var(--bg-crucigrama); }
+.game-card__head--sudoku        { background: var(--bg-sudoku); }
+.game-card__head--wordle        { background: var(--bg-wordle); }
+.game-card__head--autodefinidos { background: var(--bg-autodefinidos); }
+
+.game-card__icon {
+  width: 96px;
+  height: 96px;
+  display: block;
+  flex-shrink: 0;
+}
+
+.game-card__icon svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.game-card__title {
+  font-family: "Confi Serif";
+  font-weight: 700;
+  font-size: 28px;
+  line-height: 1.1;
+  letter-spacing: -0.3px;
+  text-align: center;
+  margin: 0;
+  color: inherit;
+}
+
+.game-card__actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+  padding: var(--space-16);
+}
+
+
+/* ----------  BOTONES  ---------- */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 48px;
+  padding-inline: var(--space-24);
+  border-radius: var(--radius-sm);
+  border: 0.7px solid var(--text-primary);
+  background: var(--neutral-0);
+  color: var(--text-primary);
+  font-family: "Confi Sans";
+  font-weight: 500;
+  font-size: 15px;
+  letter-spacing: 0;
+  cursor: pointer;
+  text-decoration: none;
+  transition: opacity 0.12s ease;
+}
+
+.btn:hover {
+  opacity: 0.7;
+}
+
+.btn--dark {
+  background: var(--btn-dark);
+  border-color: var(--btn-dark);
+  color: var(--neutral-0);
+}
+
+
+/* ----------  PÁGINA DE JUEGO · Balcón de sección  ---------- */
+
+.game-balcony {
+  border-bottom: 0.7px solid var(--border-subtle);
+  margin-bottom: var(--space-24);
+}
+
+.game-balcony__title {
+  display: inline-block;
+  padding-bottom: var(--space-12);
+  margin: 0 0 -1px;                /* solapa la línea fina */
+  border-bottom: 4px solid var(--text-primary);
+  font-family: "Confi Sans";
+  font-weight: 700;
+  font-size: 22px;                 /* token Figma "Titulo balcón sección" */
+  line-height: 1.2;
+  letter-spacing: 0;
+  color: var(--text-primary);
+}
+
+
+/* ----------  PÁGINA DE JUEGO · SLOT del juego  ---------- */
+
+.game-slot {
+  background: var(--neutral-100);
+  border-radius: var(--radius-md);
+  aspect-ratio: 4 / 5;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-tertiary);
+  font-family: "Confi Sans";
+  font-size: 13px;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+}
+
+@media (min-width: 900px) {
+  .game-slot { aspect-ratio: 4 / 5; min-height: 600px; }
+}
+
+
+/* ----------  FOOTER (placeholder para handoff)  ---------- */
+
+.site-footer {
+  background: var(--text-primary);
+  color: var(--neutral-0);
+  min-height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-family: "Confi Sans";
+  font-weight: 500;
+  font-size: 16px;
+  letter-spacing: 0.5px;
+}

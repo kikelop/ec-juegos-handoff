@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Juegos y pasatiempos · El Confidencial</title>
+  <meta name="description" content="Crucigrama, Sudoku, Wordle y Autodefinidos del día. Una sección de juegos diaria de El Confidencial." />
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+<div class="layout">
+
+  <!-- ==============================
+       HEADER
+       ============================== -->
+  <header class="site-header">
+    <div class="container site-header__inner">
+      <a class="site-header__logo" href="/" aria-label="El Confidencial">ElConfidencial</a>
+    </div>
+  </header>
+
+  <!-- ==============================
+       MAIN
+       ============================== -->
+  <main class="main">
+    <div class="container">
+
+      <!-- HERO
+           Copy actual + 3 alternativas para elegir (probadas en tono editorial EC):
+
+           A. "Una pausa para pensar entre titular y titular. Crucigrama, sudoku y wordle nuevos cada día." ← actual
+           B. "Crucigrama, sudoku y wordle nuevos cada mañana. Tu pausa diaria para pensar."
+           C. "El descanso del lector. Crucigrama, sudoku y wordle nuevos todos los días."
+           D. "Una rutina diaria de pensar. Nuevo crucigrama, sudoku y wordle cada mañana."
+      -->
+      <section class="hero" aria-labelledby="hero-title">
+        <h1 id="hero-title" class="hero__title">Juegos y pasatiempos</h1>
+        <p class="hero__subtitle">Una pausa para pensar entre titular y titular. Crucigrama, sudoku y wordle nuevos cada día.</p>
+      </section>
+
+      <!-- BANNER PUBLICIDAD (billboard) -->
+      <aside class="ad" aria-label="Publicidad">
+        <div class="ad__slot ad__slot--billboard" data-ad-slot="billboard">
+          <!-- Aquí va el ad slot del gestor (Google Ad Manager, etc.) -->
+        </div>
+        <div class="ad__label">Publicidad</div>
+      </aside>
+
+      <!-- ZONA CARDS DE JUEGOS + ASIDE PUBLICIDAD -->
+      <div class="main__row">
+
+        <!-- GRID DE 4 JUEGOS -->
+        <section class="games-grid" aria-label="Juegos disponibles">
+
+          <!-- 1. Crucigrama -->
+          <article class="game-card">
+            <div class="game-card__head game-card__head--crucigrama">
+              <span class="game-card__icon" aria-hidden="true">
+                <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" fill="none">
+                  <path d="M94 6H6V94H94V6Z" fill="#ffffff" stroke="currentColor" stroke-width="5"/>
+                  <path d="M28 6V94" stroke="currentColor" stroke-width="4"/>
+                  <path d="M50 6V94" stroke="currentColor" stroke-width="4"/>
+                  <path d="M72 6V94" stroke="currentColor" stroke-width="4"/>
+                  <path d="M6 28H94" stroke="currentColor" stroke-width="4"/>
+                  <path d="M6 50H94" stroke="currentColor" stroke-width="4"/>
+                  <path d="M6 72H94" stroke="currentColor" stroke-width="4"/>
+                  <path d="M28 28H6V50H28V28Z" fill="currentColor"/>
+                  <path d="M72 6H50V28H72V6Z" fill="currentColor"/>
+                  <path d="M94 50H72V72H94V50Z" fill="currentColor"/>
+                  <path d="M50 72H28V94H50V72Z" fill="currentColor"/>
+                </svg>
+              </span>
+              <h2 class="game-card__title">Crucigrama</h2>
+            </div>
+            <div class="game-card__actions">
+              <a class="btn btn--dark" href="./game.html?juego=crucigrama">Jugar</a>
+              <a class="btn" href="./game.html?juego=crucigrama&amp;archivo=1">Antiguos</a>
+            </div>
+          </article>
+
+          <!-- 2. Sudoku -->
+          <article class="game-card">
+            <div class="game-card__head game-card__head--sudoku">
+              <span class="game-card__icon" aria-hidden="true">
+                <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" fill="none">
+                  <path d="M94 6H6V94H94V6Z" fill="#ffffff" stroke="currentColor" stroke-width="5"/>
+                  <path d="M35.3 6V94" stroke="currentColor" stroke-width="1.2"/>
+                  <path d="M64.7 6V94" stroke="currentColor" stroke-width="1.2"/>
+                  <path d="M6 35.3H94" stroke="currentColor" stroke-width="1.2"/>
+                  <path d="M6 64.7H94" stroke="currentColor" stroke-width="1.2"/>
+                  <path d="M21.5004 28.126C19.8804 28.126 18.6744 27.838 17.4324 27.136L16.9824 24.166H18.1704C18.6924 26.02 19.6284 26.812 21.1764 26.812C22.6344 26.812 23.6424 26.074 23.6424 24.31C23.6424 22.006 21.4824 21.61 17.8284 21.34L19.2324 15.4H25.4784V17.218H20.3664L19.8984 19.27C23.7144 19.81 25.8384 20.674 25.8384 23.878C25.8384 26.344 24.0744 28.126 21.5004 28.126Z" fill="currentColor"/>
+                  <path d="M78.3644 27.126C76.7264 27.126 75.5384 26.838 74.2784 26.136L73.8284 23.166H75.0164C75.6104 25.038 76.5104 25.812 78.1844 25.812C79.6784 25.812 80.4704 24.948 80.4704 23.436C80.4704 21.888 79.5704 21.078 77.7164 21.078H76.7624V19.962C79.0484 19.638 79.9304 18.972 79.9304 17.442C79.9304 16.254 79.2824 15.588 78.2204 15.588C76.7444 15.588 75.9164 16.434 75.5744 18.234H74.3864V15.444C75.3944 14.688 76.7804 14.274 78.3824 14.274C81.0464 14.274 82.6304 15.372 82.6304 17.334C82.6304 18.81 81.6584 19.728 80.2724 20.16C82.1984 20.664 83.1704 21.618 83.1704 23.256C83.1704 25.596 81.3704 27.126 78.3644 27.126Z" fill="currentColor"/>
+                  <path d="M47.0933 56V55.82L52.7453 45.218H49.6313C47.7053 45.218 47.1653 45.56 46.4453 47.234H45.5813L46.1753 43.4H54.5093V44.174L50.0093 56H47.0933Z" fill="currentColor"/>
+                  <path d="M21.364 71.274C24.172 71.274 26.152 73.38 26.152 76.332C26.152 80.328 22.93 83.514 18.304 84.126V82.848C21.238 82.056 22.786 80.616 23.452 78.114C22.822 78.906 21.85 79.284 20.482 79.284C18.34 79.284 16.864 77.736 16.864 75.558C16.864 72.966 18.646 71.274 21.364 71.274ZM21.364 72.588C20.158 72.588 19.546 73.47 19.546 75.252C19.546 77.214 20.59 77.88 21.616 77.88C22.516 77.88 23.146 77.394 23.452 77.016V76.314C23.452 73.866 22.696 72.588 21.364 72.588Z" fill="currentColor"/>
+                  <path d="M74.0393 84V83.226L77.8193 78.924C79.5473 76.944 80.0333 76.116 80.0333 74.82C80.0333 73.434 79.3313 72.588 78.1253 72.588C76.6853 72.588 75.8573 73.398 75.5153 75.234H74.3273V72.444C75.3173 71.688 76.7213 71.274 78.2873 71.274C81.1313 71.274 82.7153 72.552 82.7153 74.82C82.7153 76.818 81.7073 78.24 78.9533 80.31L76.4873 82.182H79.0973C81.0053 82.182 81.5633 81.84 82.2833 80.166H83.1473L82.5533 84H74.0393Z" fill="currentColor"/>
+                </svg>
+              </span>
+              <h2 class="game-card__title">Sudoku</h2>
+            </div>
+            <div class="game-card__actions">
+              <a class="btn btn--dark" href="./game.html?juego=sudoku">Jugar</a>
+              <a class="btn" href="./game.html?juego=sudoku&amp;archivo=1">Antiguos</a>
+            </div>
+          </article>
+
+          <!-- 3. Wordle -->
+          <article class="game-card">
+            <div class="game-card__head game-card__head--wordle">
+              <span class="game-card__icon" aria-hidden="true">
+                <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" fill="none">
+                  <path d="M94 6H6V28H94V6Z" fill="#ffffff" stroke="currentColor" stroke-width="5"/>
+                  <path d="M94 39H6V61H94V39Z" fill="#ffffff" stroke="currentColor" stroke-width="5"/>
+                  <path d="M94 72H6V94H94V72Z" fill="#ffffff" stroke="currentColor" stroke-width="5"/>
+                  <path d="M28 6V28" stroke="currentColor" stroke-width="4"/>
+                  <path d="M28 39V61" stroke="currentColor" stroke-width="4"/>
+                  <path d="M28 72V94" stroke="currentColor" stroke-width="4"/>
+                  <path d="M50 6V28" stroke="currentColor" stroke-width="4"/>
+                  <path d="M72 6V28" stroke="currentColor" stroke-width="4"/>
+                  <path d="M50 72H28V94H50V72Z" fill="currentColor"/>
+                  <path d="M72 39H50V61H72V39Z" fill="currentColor"/>
+                  <path d="M72 72H50V94H72V72Z" fill="currentColor"/>
+                </svg>
+              </span>
+              <h2 class="game-card__title">Palabra del día</h2>
+            </div>
+            <div class="game-card__actions">
+              <a class="btn btn--dark" href="./game.html?juego=palabra-del-dia">Jugar</a>
+              <a class="btn" href="./game.html?juego=palabra-del-dia&amp;archivo=1">Antiguos</a>
+            </div>
+          </article>
+
+          <!-- 4. Autodefinidos -->
+          <article class="game-card">
+            <div class="game-card__head game-card__head--autodefinidos">
+              <span class="game-card__icon" aria-hidden="true">
+                <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" fill="none">
+                  <path d="M94 6H6V94H94V6Z" fill="#ffffff" stroke="currentColor" stroke-width="5"/>
+                  <path d="M28 6H6V28H28V6Z" fill="currentColor"/>
+                  <path d="M72 6H50V28H72V6Z" fill="currentColor"/>
+                  <path d="M50 28H28V50H50V28Z" fill="currentColor"/>
+                  <path d="M94 28H72V50H94V28Z" fill="currentColor"/>
+                  <path d="M28 50H6V72H28V50Z" fill="currentColor"/>
+                  <path d="M72 50H50V72H72V50Z" fill="currentColor"/>
+                  <path d="M50 72H28V94H50V72Z" fill="currentColor"/>
+                  <path d="M94 72H72V94H94V72Z" fill="currentColor"/>
+                </svg>
+              </span>
+              <h2 class="game-card__title">Autodefinidos</h2>
+            </div>
+            <div class="game-card__actions">
+              <a class="btn btn--dark" href="./game.html?juego=autodefinidos">Jugar</a>
+              <a class="btn" href="./game.html?juego=autodefinidos&amp;archivo=1">Antiguos</a>
+            </div>
+          </article>
+
+        </section>
+
+        <!-- ASIDE PUBLICIDAD SIDEBAR -->
+        <aside class="main__aside" aria-label="Publicidad lateral">
+          <div class="ad">
+            <div class="ad__slot ad__slot--sidebar" data-ad-slot="sidebar">
+              <!-- Ad slot lateral -->
+            </div>
+            <div class="ad__label">Publicidad</div>
+          </div>
+        </aside>
+
+      </div>
+
+    </div>
+  </main>
+
+  <!-- ==============================
+       FOOTER
+       ============================== -->
+  <footer class="site-footer">Footer</footer>
+
+</div>
+</body>
+</html>

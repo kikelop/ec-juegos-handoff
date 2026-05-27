@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Crucigrama · Juegos y pasatiempos · El Confidencial</title>
+  <meta name="description" content="Juega al crucigrama diario de El Confidencial." />
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+<div class="layout">
+
+  <!-- ==============================
+       HEADER
+       ============================== -->
+  <header class="site-header">
+    <div class="container site-header__inner">
+      <a class="site-header__logo" href="/" aria-label="El Confidencial">ElConfidencial</a>
+    </div>
+  </header>
+
+  <!-- ==============================
+       MAIN
+       ============================== -->
+  <main class="main">
+    <div class="container">
+
+      <!-- BANNER PUBLICIDAD (billboard) -->
+      <aside class="ad" aria-label="Publicidad">
+        <div class="ad__slot ad__slot--billboard" data-ad-slot="billboard">
+          <!-- Ad slot del gestor publicitario -->
+        </div>
+        <div class="ad__label">Publicidad</div>
+      </aside>
+
+      <!-- ZONA JUEGO + ASIDE PUBLICIDAD -->
+      <div class="main__row">
+
+        <!-- COLUMNA IZQUIERDA · BALCÓN + SLOT DE JUEGO -->
+        <section aria-labelledby="game-title">
+
+          <!-- Balcón de sección: nombre del juego con underline editorial -->
+          <header class="game-balcony">
+            <h1 id="game-title" class="game-balcony__title">Crucigrama</h1>
+          </header>
+
+          <!-- SLOT DEL JUEGO
+               Aquí encaja el juego real:
+               - <iframe> al motor de juego (Amuse, Cloudkid, in-house, etc.)
+               - O un componente React/Vue montado en este div
+               - O un canvas HTML5
+
+               La clase .game-slot solo aporta:
+                · Fondo Neutral/100 (#e2e2e2)
+                · Radio 8px
+                · Aspect-ratio 4:5 (revisable según juego)
+                · Min-height 600px en desktop -->
+          <div class="game-slot" aria-label="Área de juego" data-game-id="crucigrama">
+            [ Aquí encaja el juego ]
+          </div>
+
+        </section>
+
+        <!-- ASIDE PUBLICIDAD SIDEBAR -->
+        <aside class="main__aside" aria-label="Publicidad lateral">
+          <div class="ad">
+            <div class="ad__slot ad__slot--sidebar" data-ad-slot="sidebar">
+              <!-- Ad slot lateral -->
+            </div>
+            <div class="ad__label">Publicidad</div>
+          </div>
+        </aside>
+
+      </div>
+
+    </div>
+  </main>
+
+  <!-- ==============================
+       FOOTER
+       ============================== -->
+  <footer class="site-footer">Footer</footer>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,9 @@
+# Fuentes Confi — propiedad de El Confidencial, no se publican
+fonts/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Vercel local
+.vercel

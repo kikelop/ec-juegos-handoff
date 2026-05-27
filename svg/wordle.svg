@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100" fill="none">
+  <path d="M94 6H6V28H94V6Z" fill="#ffffff" stroke="currentColor" stroke-width="5"/>
+  <path d="M94 39H6V61H94V39Z" fill="#ffffff" stroke="currentColor" stroke-width="5"/>
+  <path d="M94 72H6V94H94V72Z" fill="#ffffff" stroke="currentColor" stroke-width="5"/>
+  <path d="M28 6V28" stroke="currentColor" stroke-width="4"/>
+  <path d="M28 39V61" stroke="currentColor" stroke-width="4"/>
+  <path d="M28 72V94" stroke="currentColor" stroke-width="4"/>
+  <path d="M50 6V28" stroke="currentColor" stroke-width="4"/>
+  <path d="M72 6V28" stroke="currentColor" stroke-width="4"/>
+  <path d="M50 72H28V94H50V72Z" fill="currentColor"/>
+  <path d="M72 39H50V61H72V39Z" fill="currentColor"/>
+  <path d="M72 72H50V94H72V72Z" fill="currentColor"/>
+</svg>

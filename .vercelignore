@@ -1,0 +1,7 @@
+# Vercel usa este archivo en lugar de .gitignore cuando existe.
+# Excluimos lo de siempre, pero NO fonts/ — esas sí queremos en el deploy.
+.git
+.DS_Store
+Thumbs.db
+node_modules
+.vercel
