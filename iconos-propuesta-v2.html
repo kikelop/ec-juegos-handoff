@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Iconos juegos nuevos · EC Juegos</title>
+<link rel="stylesheet" href="./styles.css" />
+<style>
+  body { padding: 64px 24px; background: var(--neutral-25); }
+
+  .preview { max-width: 1280px; margin: 0 auto; }
+
+  .preview__header { margin-bottom: 48px; }
+
+  .preview__eyebrow {
+    font-family: "Confi Sans";
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 0.6px;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    margin-bottom: 12px;
+  }
+
+  .preview__title {
+    font-family: "Confi Serif";
+    font-weight: 700;
+    font-size: 40px;
+    line-height: 1.1;
+    margin-bottom: 12px;
+    letter-spacing: -0.5px;
+  }
+
+  .preview__desc {
+    color: var(--text-secondary);
+    max-width: 720px;
+  }
+
+  .icon-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 32px;
+  }
+  @media (max-width: 1024px) { .icon-grid { grid-template-columns: repeat(3, 1fr); } }
+  @media (max-width: 700px)  { .icon-grid { grid-template-columns: repeat(2, 1fr); } }
+
+  .icon-card {
+    border: 0.7px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    background: var(--neutral-0);
+    overflow: hidden;
+  }
+
+  .icon-card__head {
+    aspect-ratio: 1 / 1;
+    background: var(--steel-150);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-primary);
+  }
+
+  .icon-card__icon { width: 96px; height: 96px; }
+  .icon-card__icon svg { width: 100%; height: 100%; }
+
+  .icon-card__meta {
+    padding: 16px 20px;
+    border-top: 0.7px solid var(--border-subtle);
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .icon-card__name {
+    font-family: "Confi Serif";
+    font-weight: 700;
+    font-size: 19px;
+    color: var(--text-primary);
+    letter-spacing: -0.2px;
+  }
+
+  .icon-card__hint {
+    font-family: "Confi Sans";
+    font-size: 12px;
+    color: var(--text-secondary);
+    line-height: 1.45;
+  }
+
+  .icon-card__download {
+    margin-top: 8px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 36px;
+    padding: 0 16px;
+    border-radius: 2px;
+    background: var(--btn-dark);
+    color: var(--neutral-0);
+    font-family: "Confi Sans";
+    font-weight: 500;
+    font-size: 13px;
+    text-decoration: none;
+    transition: opacity 0.12s ease;
+    align-self: flex-start;
+  }
+  .icon-card__download:hover { opacity: 0.7; }
+</style>
+</head>
+<body>
+<div class="preview">
+  <header class="preview__header">
+    <div class="preview__eyebrow">EC Juegos · Hackatón Inno</div>
+    <h1 class="preview__title">Iconos para los juegos nuevos</h1>
+    <p class="preview__desc">
+      Siete iconos siguiendo el mismo lenguaje visual ya validado (caja blanca con stroke negro 5px y elementos internos en <code>currentColor</code>). Todos 96×96 sobre fondo Steel/150 — igual que las cards de la landing.
+    </p>
+  </header>
+
+  <div class="icon-grid">
+
+    <div class="icon-card">
+      <div class="icon-card__head">
+        <span class="icon-card__icon">
+          <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" fill="none">
+            <path d="M94 6H6V94H94V6Z" fill="#ffffff" stroke="currentColor" stroke-width="5"/>
+            <path d="M28 6V94" stroke="currentColor" stroke-width="4"/>
+            <path d="M50 6V94" stroke="currentColor" stroke-width="4"/>
+            <path d="M72 6V94" stroke="currentColor" stroke-width="4"/>
+            <path d="M6 28H94" stroke="currentColor" stroke-width="4"/>
+            <path d="M6 50H94" stroke="currentColor" stroke-width="4"/>
+            <path d="M6 72H94" stroke="currentColor" stroke-width="4"/>
+            <path d="M6 6H28V28H6V6Z" fill="currentColor"/>
+            <path d="M50 6H72V28H50V6Z" fill="currentColor"/>
+            <path d="M72 6H94V28H72V6Z" fill="currentColor"/>
+            <path d="M28 28H50V50H28V28Z" fill="currentColor"/>
+            <path d="M6 50H28V72H6V50Z" fill="currentColor"/>
+            <path d="M50 50H72V72H50V50Z" fill="currentColor"/>
+            <path d="M72 50H94V72H72V50Z" fill="currentColor"/>
+            <path d="M28 72H50V94H28V72Z" fill="currentColor"/>
+            <path d="M72 72H94V94H72V72Z" fill="currentColor"/>
+          </svg>
+        </span>
+      </div>
+      <div class="icon-card__meta">
+        <div class="icon-card__name">Crucigrama experto</div>
+        <div class="icon-card__hint">Misma rejilla 4×4 que el normal pero con el doble de casillas negras: lectura inmediata de "más difícil".</div>
+        <a class="icon-card__download" href="./svg/crucigrama-experto.svg" download="ec-juegos-crucigrama-experto.svg">↓ Descargar SVG</a>
+      </div>
+    </div>
+
+    <div class="icon-card">
+      <div class="icon-card__head">
+        <span class="icon-card__icon">
+          <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" fill="none">
+            <path d="M94 6H6V94H94V6Z" fill="#ffffff" stroke="currentColor" stroke-width="5"/>
+            <g stroke="currentColor" stroke-width="3" fill="none">
+              <rect x="14" y="38" width="14" height="22"/>
+              <rect x="32" y="38" width="14" height="22"/>
+              <rect x="50" y="38" width="14" height="22"/>
+              <rect x="68" y="38" width="14" height="22"/>
+            </g>
+            <g font-family="Georgia, 'Times New Roman', serif" font-weight="700" font-size="18" fill="currentColor" text-anchor="middle">
+              <text x="21" y="56">P</text>
+              <text x="57" y="56">L</text>
+              <text x="75" y="56">A</text>
+            </g>
+            <line x1="35" y1="56" x2="43" y2="56" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+          </svg>
+        </span>
+      </div>
+      <div class="icon-card__meta">
+        <div class="icon-card__name">Palabra secreta</div>
+        <div class="icon-card__hint">Tres letras visibles arriba + 4 huecos por adivinar con una letra ya acertada: estilo "ahorcado" clásico.</div>
+        <a class="icon-card__download" href="./svg/palabra-secreta.svg" download="ec-juegos-palabra-secreta.svg">↓ Descargar SVG</a>
+      </div>
+    </div>
+
+    <div class="icon-card">
+      <div class="icon-card__head">
+        <span class="icon-card__icon">
+          <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" fill="none">
+            <path d="M94 6H6V94H94V6Z" fill="#ffffff" stroke="currentColor" stroke-width="5"/>
+            <g font-family="Georgia, 'Times New Roman', serif" font-weight="700" font-size="15" fill="currentColor" text-anchor="middle">
+              <text x="20" y="27">E</text>
+              <text x="40" y="27">C</text>
+              <text x="60" y="27">A</text>
+              <text x="80" y="27">R</text>
+              <text x="20" y="48">M</text>
+              <text x="40" y="48">A</text>
+              <text x="60" y="48">D</text>
+              <text x="80" y="48">O</text>
+              <text x="20" y="69">N</text>
+              <text x="40" y="69">I</text>
+              <text x="60" y="69">P</text>
+              <text x="80" y="69">S</text>
+              <text x="20" y="90">T</text>
+              <text x="40" y="90">R</text>
+              <text x="60" y="90">L</text>
+              <text x="80" y="90">U</text>
+            </g>
+            <rect x="30" y="38" width="60" height="20" rx="10" fill="none" stroke="currentColor" stroke-width="3"/>
+          </svg>
+        </span>
+      </div>
+      <div class="icon-card__meta">
+        <div class="icon-card__name">Sopa de letras</div>
+        <div class="icon-card__hint">Grid 4×4 de letras con una palabra (M-A-D-O) marcada con la cápsula horizontal.</div>
+        <a class="icon-card__download" href="./svg/sopa-letras.svg" download="ec-juegos-sopa-letras.svg">↓ Descargar SVG</a>
+      </div>
+    </div>
+
+    <div class="icon-card">
+      <div class="icon-card__head">
+        <span class="icon-card__icon">
+          <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" fill="none">
+            <path d="M94 6H6V94H94V6Z" fill="#ffffff" stroke="currentColor" stroke-width="5"/>
+            <rect x="14" y="14" width="32" height="32" fill="#ffffff" stroke="currentColor" stroke-width="3"/>
+            <g font-family="Georgia, 'Times New Roman', serif" font-weight="700" font-size="22" fill="currentColor" text-anchor="middle">
+              <text x="30" y="38">★</text>
+            </g>
+            <rect x="54" y="14" width="32" height="32" fill="currentColor"/>
+            <rect x="14" y="54" width="32" height="32" fill="currentColor"/>
+            <rect x="54" y="54" width="32" height="32" fill="#ffffff" stroke="currentColor" stroke-width="3"/>
+            <g font-family="Georgia, 'Times New Roman', serif" font-weight="700" font-size="22" fill="currentColor" text-anchor="middle">
+              <text x="70" y="78">★</text>
+            </g>
+          </svg>
+        </span>
+      </div>
+      <div class="icon-card__meta">
+        <div class="icon-card__name">Memoria</div>
+        <div class="icon-card__hint">Cuatro cartas 2×2: dos boca abajo (negras) + dos boca arriba mostrando el mismo símbolo — el match.</div>
+        <a class="icon-card__download" href="./svg/memoria.svg" download="ec-juegos-memoria.svg">↓ Descargar SVG</a>
+      </div>
+    </div>
+
+    <div class="icon-card">
+      <div class="icon-card__head">
+        <span class="icon-card__icon">
+          <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" fill="none">
+            <path d="M94 6H6V94H94V6Z" fill="#ffffff" stroke="currentColor" stroke-width="5"/>
+            <line x1="6" y1="50" x2="94" y2="50" stroke="currentColor" stroke-width="3"/>
+            <rect x="6"  y="42" width="16" height="16" fill="#ffffff" stroke="currentColor" stroke-width="3"/>
+            <rect x="30" y="42" width="16" height="16" fill="#ffffff" stroke="currentColor" stroke-width="3"/>
+            <rect x="54" y="42" width="16" height="16" fill="#ffffff" stroke="currentColor" stroke-width="3"/>
+            <rect x="78" y="42" width="16" height="16" fill="#ffffff" stroke="currentColor" stroke-width="3"/>
+            <g stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none">
+              <path d="M10 50 L13 53 L18 47"/>
+              <path d="M34 50 L37 53 L42 47"/>
+              <path d="M58 50 L61 53 L66 47"/>
+              <path d="M82 50 L85 53 L90 47"/>
+            </g>
+          </svg>
+        </span>
+      </div>
+      <div class="icon-card__meta">
+        <div class="icon-card__name">Conexión de palabras</div>
+        <div class="icon-card__hint">Cuatro elementos enlazados por una línea con check dentro de cada uno: grupo conectado y resuelto.</div>
+        <a class="icon-card__download" href="./svg/conexion-grupos.svg" download="ec-juegos-conexion-grupos.svg">↓ Descargar SVG</a>
+      </div>
+    </div>
+
+    <div class="icon-card">
+      <div class="icon-card__head">
+        <span class="icon-card__icon">
+          <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" fill="none">
+            <path d="M94 6H6V94H94V6Z" fill="#ffffff" stroke="currentColor" stroke-width="5"/>
+            <g>
+              <rect x="14" y="18" width="22" height="26" fill="currentColor"/>
+              <rect x="39" y="18" width="22" height="26" fill="currentColor"/>
+              <rect x="64" y="18" width="22" height="26" fill="currentColor"/>
+            </g>
+            <g font-family="Georgia, 'Times New Roman', serif" font-weight="700" font-size="18" fill="#ffffff" text-anchor="middle">
+              <text x="25" y="38">L</text>
+              <text x="50" y="38">P</text>
+              <text x="75" y="38">A</text>
+            </g>
+            <g stroke="currentColor" stroke-width="3" fill="none">
+              <rect x="14" y="56" width="22" height="26"/>
+              <rect x="39" y="56" width="22" height="26"/>
+              <rect x="64" y="56" width="22" height="26"/>
+            </g>
+            <g font-family="Georgia, 'Times New Roman', serif" font-weight="700" font-size="13" fill="currentColor" text-anchor="middle">
+              <text x="25" y="89">1</text>
+              <text x="50" y="89">2</text>
+              <text x="75" y="89">3</text>
+            </g>
+          </svg>
+        </span>
+      </div>
+      <div class="icon-card__meta">
+        <div class="icon-card__name">Palabros</div>
+        <div class="icon-card__hint">Letras sueltas arriba (desordenadas) + casillas con orden 1·2·3 abajo: formar palabra arrastrando.</div>
+        <a class="icon-card__download" href="./svg/palabros.svg" download="ec-juegos-palabros.svg">↓ Descargar SVG</a>
+      </div>
+    </div>
+
+    <div class="icon-card">
+      <div class="icon-card__head">
+        <span class="icon-card__icon">
+          <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" fill="none">
+            <path d="M86 18H14V70H32L40 84L48 70H86V18Z" fill="#ffffff" stroke="currentColor" stroke-width="5"/>
+            <g font-family="Georgia, 'Times New Roman', serif" font-weight="700" font-size="38" fill="currentColor" text-anchor="middle">
+              <text x="50" y="56">?</text>
+            </g>
+          </svg>
+        </span>
+      </div>
+      <div class="icon-card__meta">
+        <div class="icon-card__name">Quién lo dijo</div>
+        <div class="icon-card__hint">Bocadillo de diálogo con interrogación: cita anónima + adivinar autor (Sánchez, Feijóo, Ayuso, etc.).</div>
+        <a class="icon-card__download" href="./svg/quien-lo-dijo.svg" download="ec-juegos-quien-lo-dijo.svg">↓ Descargar SVG</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+</body>
+</html>
