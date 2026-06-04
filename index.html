@@ -89,8 +89,7 @@
         </div>
         <ul class="games-grid">
           <li>
-            <!-- Completado: sin href (no navegable) + aria-disabled -->
-            <a class="game-card game-card--acero game-card--done" aria-disabled="true">
+            <a class="game-card game-card--acero game-card--done" href="game.html?juego=crucigrama">
               <span class="game-card__badge" aria-hidden="true"><svg width="16" height="14" viewBox="0 0 16 14"><path d="M1.5 7.5L6 12L14.5 1.5" stroke="#fff" stroke-width="3" fill="none"/></svg></span>
               <span class="game-card__inner">
                 <span class="game-card__icon"><img src="svg/crucigrama.svg" width="87" height="87" alt=""></span>
@@ -170,6 +169,62 @@
   <footer class="site-footer">
     <p>¿Necesitas ayuda? <a href="mailto:ayuda@elconfidencial.com">Escríbenos a ayuda@elconfidencial.com</a> o llámanos a <a href="tel:+34910781090">91 078 10 90</a></p>
   </footer>
+
+  <!-- ═══════════ DEMO · toggle de completado en Retos diarios ═══════════
+       Provisional para la maqueta: click marca/desmarca el reto y actualiza
+       contador, dots, copies y puntos. En producción esto lo da el backend. -->
+  <script>
+    (function () {
+      var CHECK = '<svg width="16" height="14" viewBox="0 0 16 14" aria-hidden="true"><path d="M1.5 7.5L6 12L14.5 1.5" stroke="#fff" stroke-width="3" fill="none"/></svg>';
+      var BASE_POINTS = 55;
+      var section = document.querySelector('.games-section--retos');
+      var retoCard = document.querySelector('.status-card--reto');
+      var puntosCard = document.querySelector('.status-card--puntos');
+      var dotsBox = retoCard.querySelector('.status-card__dots');
+
+      section.querySelectorAll('.game-card').forEach(function (card) {
+        card.addEventListener('click', function (e) {
+          e.preventDefault();
+          var done = card.classList.toggle('game-card--done');
+          card.querySelector('.game-card__status').textContent = done ? 'Completado' : 'Reto pendiente';
+          if (done) {
+            var badge = document.createElement('span');
+            badge.className = 'game-card__badge';
+            badge.setAttribute('aria-hidden', 'true');
+            badge.innerHTML = CHECK;
+            card.prepend(badge);
+          } else {
+            var b = card.querySelector('.game-card__badge');
+            if (b) b.remove();
+          }
+          update();
+        });
+      });
+
+      function update() {
+        var n = section.querySelectorAll('.game-card--done').length;
+
+        retoCard.querySelector('.status-card__value').textContent = n + '/4';
+        retoCard.querySelector('.status-card__sub').textContent =
+          n === 0 ? 'Completa los 4 juegos de hoy y llévate 10 puntos extra. Cada día tendrás 4 retos nuevos.' :
+          n === 4 ? 'Reto completado · +10 puntos extra. Mañana tendrás 4 retos nuevos.' :
+          (4 - n === 1 ? 'Te queda 1 reto' : 'Te quedan ' + (4 - n) + ' retos') + ' para llevarte 10 puntos extra.';
+
+        dotsBox.setAttribute('aria-label', n + ' de 4 retos completados');
+        dotsBox.querySelectorAll('.dot').forEach(function (dot, i) {
+          var isDone = i < n;
+          dot.classList.toggle('dot--done', isDone);
+          dot.innerHTML = isDone ? CHECK : '';
+        });
+
+        /* 1 punto por reto + 10 de bonus al completar los 4 (estado inicial del Figma: 1 reto → 56) */
+        puntosCard.querySelector('.status-card__value').textContent = BASE_POINTS + n + (n === 4 ? 10 : 0);
+        puntosCard.querySelector('.status-card__sub').textContent =
+          n === 4 ? 'Reto diario conseguido: +10 puntos de bonus' :
+          (4 - n === 1 ? 'Te falta 1 reto' : 'Te faltan ' + (4 - n) + ' retos') + ' para ganar 10 puntos de bonus';
+      }
+    })();
+  </script>
 
 </body>
 </html>

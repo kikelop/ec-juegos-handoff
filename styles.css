@@ -414,11 +414,9 @@ img { display: block; }
 .game-card--rosa    { background: var(--card-rosa); }
 .game-card--oliva   { background: var(--card-oliva); }
 
-/* Completado: no pulsable, aspecto desactivado (el badge mantiene fuerza) */
-.game-card--done {
-  pointer-events: none;
-  cursor: default;
-}
+/* Completado: aspecto desactivado (el badge mantiene fuerza).
+   En la maqueta sigue siendo pulsable para des-marcar (toggle demo);
+   en producción sería no navegable (pointer-events: none + sin href). */
 .game-card--done .game-card__inner { opacity: 0.45; }
 
 /* Hover (solo puntero fino): la card se eleva, el contenido hace zoom.
