@@ -433,14 +433,14 @@ img { display: block; }
     transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
   }
   .game-card:hover {
-    transform: translateY(-4px);
+    transform: translateY(-4px) scale(1.015);   /* la card crece un punto: lift en eje z */
     box-shadow:
       0 10px 20px -10px rgba(15, 33, 36, 0.14),
       0 2px 6px rgba(15, 33, 36, 0.04);
   }
   .game-card:hover .game-card__inner { transform: scale(1.035); }
   .game-card:active {
-    transform: translateY(-1px);
+    transform: translateY(-1px) scale(1.005);
     transition-duration: 0.15s;
   }
   .game-card:active .game-card__inner {
