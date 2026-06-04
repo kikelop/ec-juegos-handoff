@@ -366,6 +366,11 @@ img { display: block; }
   padding: 10px;
   color: var(--ink-card);
 }
+.game-card__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 .game-card__icon { margin-bottom: 16px; }
 .game-card__title {
   font-family: var(--font-serif);
@@ -405,6 +410,40 @@ img { display: block; }
 .game-card--dorado  { background: var(--card-dorado); }
 .game-card--rosa    { background: var(--card-rosa); }
 .game-card--oliva   { background: var(--card-oliva); }
+
+/* Hover (solo puntero fino): la card se eleva, el contenido hace zoom.
+   Ease tipo GSAP power4.out → cubic-bezier(0.22, 1, 0.36, 1) */
+@media (hover: hover) and (pointer: fine) {
+  .game-card {
+    transition:
+      transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+      box-shadow 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .game-card__inner {
+    transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .game-card:hover {
+    transform: translateY(-6px);
+    box-shadow:
+      0 18px 32px -14px rgba(15, 33, 36, 0.28),
+      0 4px 10px rgba(15, 33, 36, 0.07);
+  }
+  .game-card:hover .game-card__inner { transform: scale(1.05); }
+  .game-card:active {
+    transform: translateY(-2px);
+    transition-duration: 0.15s;
+  }
+  .game-card:active .game-card__inner {
+    transform: scale(1.02);
+    transition-duration: 0.15s;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .game-card,
+  .game-card__inner { transition: none; }
+  .game-card:hover .game-card__inner { transform: none; }
+}
 
 
 /* ==========================================================================
