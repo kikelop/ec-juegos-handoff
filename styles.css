@@ -543,8 +543,11 @@ img { display: block; }
   .status-card { padding: 16px; }
   .status-card__dots { display: none; }
 
-  /* Juegos a 1 columna · los completados bajan al final */
-  .games-grid { grid-template-columns: 1fr; }
+  /* Juegos a 1 columna, gap 16 · los completados bajan al final */
+  .games-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
   .games-grid li:has(.game-card--done) { order: 1; }
 
   .site-footer {
