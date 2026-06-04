@@ -1,305 +1,164 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Juegos y pasatiempos · El Confidencial</title>
-  <meta name="description" content="Crucigrama, Sudoku, Wordle y Autodefinidos del día. Una sección de juegos diaria de El Confidencial." />
-  <link rel="stylesheet" href="./styles.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Juegos · El Confidencial</title>
+  <meta name="description" content="Una pausa para pensar antes o después del titular del día. Nuevos retos cada día.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<div class="layout">
 
-  <!-- ==============================
-       HEADER
-       ============================== -->
+  <!-- ═══════════ HEADER EC ═══════════ -->
   <header class="site-header">
-    <div class="container site-header__inner">
-      <a class="site-header__logo" href="/" aria-label="El Confidencial">ElConfidencial</a>
+    <div class="site-header__inner">
+      <div class="site-header__left">
+        <button class="site-header__menu" type="button" aria-label="Abrir menú">
+          <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><g fill="#121212"><rect width="4" height="4"/><rect x="6" width="4" height="4"/><rect x="12" width="4" height="4"/><rect y="6" width="4" height="4"/><rect x="6" y="6" width="4" height="4"/><rect x="12" y="6" width="4" height="4"/><rect y="12" width="4" height="4"/><rect x="6" y="12" width="4" height="4"/><rect x="12" y="12" width="4" height="4"/></g></svg>
+          <span>Menú</span>
+        </button>
+        <a class="site-header__breaking" href="#">
+          <span class="site-header__breaking-dot" aria-hidden="true"></span>
+          <span>Últimas noticias</span>
+        </a>
+      </div>
+
+      <a class="site-header__logo" href="https://www.elconfidencial.com" aria-label="El Confidencial">
+        <img src="svg/logo-ec.svg" width="206" height="18" alt="El Confidencial · 25 años">
+      </a>
+
+      <div class="site-header__right">
+        <a class="site-header__login" href="#">Iniciar sesión</a>
+        <a class="site-header__cta" href="#">Suscríbete</a>
+      </div>
     </div>
   </header>
 
-  <!-- ==============================
-       MAIN
-       ============================== -->
-  <main class="main">
-    <div class="container">
+  <div class="page">
 
-      <!-- HERO
-           Copy actual + 3 alternativas para elegir (probadas en tono editorial EC):
+    <!-- ═══════════ PUBLICIDAD · BILLBOARD ═══════════ -->
+    <!-- Variantes: Desktop 1012×303 (slot 980×250) · Tablet 768×303 (slot 736×250) · Mobile 320×263 (slot 288×210) -->
+    <div class="ad ad--billboard">
+      <div class="ad__slot"></div>
+      <span class="ad__label">publicidad</span>
+    </div>
 
-           A. "Una pausa para pensar entre titular y titular. Crucigrama, sudoku y wordle nuevos cada día." ← actual
-           B. "Crucigrama, sudoku y wordle nuevos cada mañana. Tu pausa diaria para pensar."
-           C. "El descanso del lector. Crucigrama, sudoku y wordle nuevos todos los días."
-           D. "Una rutina diaria de pensar. Nuevo crucigrama, sudoku y wordle cada mañana."
-      -->
-      <section class="hero" aria-labelledby="hero-title">
-        <h1 id="hero-title" class="hero__title">Juegos y pasatiempos</h1>
-        <p class="hero__subtitle">Una pausa para pensar entre titular y titular. Crucigrama, sudoku y wordle nuevos cada día.</p>
-      </section>
-
-      <!-- BANNER PUBLICIDAD (billboard) -->
-      <aside class="ad" aria-label="Publicidad">
-        <div class="ad__slot ad__slot--billboard" data-ad-slot="billboard">
-          <!-- Aquí va el ad slot del gestor (Google Ad Manager, etc.) -->
+    <!-- ═══════════ HERO + RETENCIÓN ═══════════ -->
+    <section class="hero-block" aria-labelledby="hero-title">
+      <div class="hero-block__heading">
+        <div class="balcon balcon--hero">
+          <h1 class="balcon__title" id="hero-title">Juegos</h1>
         </div>
-        <div class="ad__label">Publicidad</div>
-      </aside>
-
-      <!-- ZONA CARDS DE JUEGOS + ASIDE PUBLICIDAD -->
-      <div class="main__row">
-
-        <!-- GRID DE 4 JUEGOS -->
-        <section class="games-grid" aria-label="Juegos disponibles">
-
-          <!-- 1. Crucigrama -->
-          <article class="game-card">
-            <div class="game-card__head game-card__head--crucigrama">
-              <span class="game-card__icon" aria-hidden="true">
-                <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" fill="none">
-                  <path d="M94 6H6V94H94V6Z" fill="#ffffff" stroke="currentColor" stroke-width="5"/>
-                  <path d="M28 6V94" stroke="currentColor" stroke-width="4"/>
-                  <path d="M50 6V94" stroke="currentColor" stroke-width="4"/>
-                  <path d="M72 6V94" stroke="currentColor" stroke-width="4"/>
-                  <path d="M6 28H94" stroke="currentColor" stroke-width="4"/>
-                  <path d="M6 50H94" stroke="currentColor" stroke-width="4"/>
-                  <path d="M6 72H94" stroke="currentColor" stroke-width="4"/>
-                  <path d="M28 28H6V50H28V28Z" fill="currentColor"/>
-                  <path d="M72 6H50V28H72V6Z" fill="currentColor"/>
-                  <path d="M94 50H72V72H94V50Z" fill="currentColor"/>
-                  <path d="M50 72H28V94H50V72Z" fill="currentColor"/>
-                </svg>
-              </span>
-              <h2 class="game-card__title">Crucigrama</h2>
-            </div>
-            <div class="game-card__actions">
-              <a class="btn btn--dark" href="./game.html?juego=crucigrama">Jugar</a>
-              <a class="btn" href="./game.html?juego=crucigrama&amp;archivo=1">Antiguos</a>
-            </div>
-          </article>
-
-          <!-- 2. Sudoku -->
-          <article class="game-card">
-            <div class="game-card__head game-card__head--sudoku">
-              <span class="game-card__icon" aria-hidden="true">
-                <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" fill="none">
-                  <path d="M94 6H6V94H94V6Z" fill="#ffffff" stroke="currentColor" stroke-width="5"/>
-                  <path d="M35.3 6V94" stroke="currentColor" stroke-width="1.2"/>
-                  <path d="M64.7 6V94" stroke="currentColor" stroke-width="1.2"/>
-                  <path d="M6 35.3H94" stroke="currentColor" stroke-width="1.2"/>
-                  <path d="M6 64.7H94" stroke="currentColor" stroke-width="1.2"/>
-                  <path d="M21.5004 28.126C19.8804 28.126 18.6744 27.838 17.4324 27.136L16.9824 24.166H18.1704C18.6924 26.02 19.6284 26.812 21.1764 26.812C22.6344 26.812 23.6424 26.074 23.6424 24.31C23.6424 22.006 21.4824 21.61 17.8284 21.34L19.2324 15.4H25.4784V17.218H20.3664L19.8984 19.27C23.7144 19.81 25.8384 20.674 25.8384 23.878C25.8384 26.344 24.0744 28.126 21.5004 28.126Z" fill="currentColor"/>
-                  <path d="M78.3644 27.126C76.7264 27.126 75.5384 26.838 74.2784 26.136L73.8284 23.166H75.0164C75.6104 25.038 76.5104 25.812 78.1844 25.812C79.6784 25.812 80.4704 24.948 80.4704 23.436C80.4704 21.888 79.5704 21.078 77.7164 21.078H76.7624V19.962C79.0484 19.638 79.9304 18.972 79.9304 17.442C79.9304 16.254 79.2824 15.588 78.2204 15.588C76.7444 15.588 75.9164 16.434 75.5744 18.234H74.3864V15.444C75.3944 14.688 76.7804 14.274 78.3824 14.274C81.0464 14.274 82.6304 15.372 82.6304 17.334C82.6304 18.81 81.6584 19.728 80.2724 20.16C82.1984 20.664 83.1704 21.618 83.1704 23.256C83.1704 25.596 81.3704 27.126 78.3644 27.126Z" fill="currentColor"/>
-                  <path d="M47.0933 56V55.82L52.7453 45.218H49.6313C47.7053 45.218 47.1653 45.56 46.4453 47.234H45.5813L46.1753 43.4H54.5093V44.174L50.0093 56H47.0933Z" fill="currentColor"/>
-                  <path d="M21.364 71.274C24.172 71.274 26.152 73.38 26.152 76.332C26.152 80.328 22.93 83.514 18.304 84.126V82.848C21.238 82.056 22.786 80.616 23.452 78.114C22.822 78.906 21.85 79.284 20.482 79.284C18.34 79.284 16.864 77.736 16.864 75.558C16.864 72.966 18.646 71.274 21.364 71.274ZM21.364 72.588C20.158 72.588 19.546 73.47 19.546 75.252C19.546 77.214 20.59 77.88 21.616 77.88C22.516 77.88 23.146 77.394 23.452 77.016V76.314C23.452 73.866 22.696 72.588 21.364 72.588Z" fill="currentColor"/>
-                  <path d="M74.0393 84V83.226L77.8193 78.924C79.5473 76.944 80.0333 76.116 80.0333 74.82C80.0333 73.434 79.3313 72.588 78.1253 72.588C76.6853 72.588 75.8573 73.398 75.5153 75.234H74.3273V72.444C75.3173 71.688 76.7213 71.274 78.2873 71.274C81.1313 71.274 82.7153 72.552 82.7153 74.82C82.7153 76.818 81.7073 78.24 78.9533 80.31L76.4873 82.182H79.0973C81.0053 82.182 81.5633 81.84 82.2833 80.166H83.1473L82.5533 84H74.0393Z" fill="currentColor"/>
-                </svg>
-              </span>
-              <h2 class="game-card__title">Sudoku</h2>
-            </div>
-            <div class="game-card__actions">
-              <a class="btn btn--dark" href="./game.html?juego=sudoku">Jugar</a>
-              <a class="btn" href="./game.html?juego=sudoku&amp;archivo=1">Antiguos</a>
-            </div>
-          </article>
-
-          <!-- 3. Wordle -->
-          <article class="game-card">
-            <div class="game-card__head game-card__head--wordle">
-              <span class="game-card__icon" aria-hidden="true">
-                <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" fill="none">
-                  <path d="M94 6H6V28H94V6Z" fill="#ffffff" stroke="currentColor" stroke-width="5"/>
-                  <path d="M94 39H6V61H94V39Z" fill="#ffffff" stroke="currentColor" stroke-width="5"/>
-                  <path d="M94 72H6V94H94V72Z" fill="#ffffff" stroke="currentColor" stroke-width="5"/>
-                  <path d="M28 6V28" stroke="currentColor" stroke-width="4"/>
-                  <path d="M28 39V61" stroke="currentColor" stroke-width="4"/>
-                  <path d="M28 72V94" stroke="currentColor" stroke-width="4"/>
-                  <path d="M50 6V28" stroke="currentColor" stroke-width="4"/>
-                  <path d="M72 6V28" stroke="currentColor" stroke-width="4"/>
-                  <path d="M50 72H28V94H50V72Z" fill="currentColor"/>
-                  <path d="M72 39H50V61H72V39Z" fill="currentColor"/>
-                  <path d="M72 72H50V94H72V72Z" fill="currentColor"/>
-                </svg>
-              </span>
-              <h2 class="game-card__title">Palabra del día</h2>
-            </div>
-            <div class="game-card__actions">
-              <a class="btn btn--dark" href="./game.html?juego=palabra-del-dia">Jugar</a>
-              <a class="btn" href="./game.html?juego=palabra-del-dia&amp;archivo=1">Antiguos</a>
-            </div>
-          </article>
-
-          <!-- 4. Autodefinidos -->
-          <article class="game-card">
-            <div class="game-card__head game-card__head--autodefinidos">
-              <span class="game-card__icon" aria-hidden="true">
-                <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" fill="none">
-                  <path d="M94 6H6V94H94V6Z" fill="#ffffff" stroke="currentColor" stroke-width="5"/>
-                  <path d="M28 6H6V28H28V6Z" fill="currentColor"/>
-                  <path d="M72 6H50V28H72V6Z" fill="currentColor"/>
-                  <path d="M50 28H28V50H50V28Z" fill="currentColor"/>
-                  <path d="M94 28H72V50H94V28Z" fill="currentColor"/>
-                  <path d="M28 50H6V72H28V50Z" fill="currentColor"/>
-                  <path d="M72 50H50V72H72V50Z" fill="currentColor"/>
-                  <path d="M50 72H28V94H50V72Z" fill="currentColor"/>
-                  <path d="M94 72H72V94H94V72Z" fill="currentColor"/>
-                </svg>
-              </span>
-              <h2 class="game-card__title">Autodefinidos</h2>
-            </div>
-            <div class="game-card__actions">
-              <a class="btn btn--dark" href="./game.html?juego=autodefinidos">Jugar</a>
-              <a class="btn" href="./game.html?juego=autodefinidos&amp;archivo=1">Antiguos</a>
-            </div>
-          </article>
-
-        </section>
-
-        <!-- ASIDE PUBLICIDAD SIDEBAR -->
-        <aside class="main__aside" aria-label="Publicidad lateral">
-          <div class="ad">
-            <div class="ad__slot ad__slot--sidebar" data-ad-slot="sidebar">
-              <!-- Ad slot lateral -->
-            </div>
-            <div class="ad__label">Publicidad</div>
-          </div>
-        </aside>
-
+        <p class="hero-block__subtitle">Una pausa para pensar antes o después del titular del día. Nuevos retos cada día.</p>
       </div>
 
-
-      <!-- ==============================
-           A1 · STREAK STRIP · racha del usuario
-           Solo mostrar a usuarios logueados con racha activa.
-           ============================== -->
-      <section class="streak" aria-label="Tu racha diaria">
-        <div class="streak__left">
-          <span class="streak__flame" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-              <path d="M13.5.67s.74 2.65.74 4.8c0 2.06-1.35 3.73-3.41 3.73-2.07 0-3.63-1.67-3.63-3.73l.03-.36C5.21 7.51 4 10.62 4 14c0 4.42 3.58 8 8 8s8-3.58 8-8C20 8.61 17.41 3.8 13.5.67zM11.71 19c-1.78 0-3.22-1.4-3.22-3.14 0-1.62 1.05-2.76 2.81-3.12 1.77-.36 3.6-1.21 4.62-2.58.39 1.29.59 2.65.59 4.04 0 2.65-2.15 4.8-4.8 4.8z"/>
-            </svg>
-          </span>
-          <div class="streak__copy">
-            <h2 class="streak__title">Llevas 12 días seguidos</h2>
-            <p class="streak__sub">Resuelve el de hoy antes de medianoche para mantener la racha.</p>
+      <div class="status-row">
+        <article class="status-card status-card--reto">
+          <div class="status-card__head">
+            <h2 class="status-card__title">Reto diario</h2>
+            <span class="status-card__value">1/4</span>
           </div>
+          <p class="status-card__sub">Completa los 4 juegos de hoy y llévate 10 puntos extra. Cada día tendrás 4 retos nuevos.</p>
+          <div class="status-card__dots" role="img" aria-label="1 de 4 retos completados">
+            <span class="dot dot--done"><svg width="16" height="14" viewBox="0 0 16 14" aria-hidden="true"><path d="M1.5 7.5L6 12L14.5 1.5" stroke="#fff" stroke-width="3" fill="none"/></svg></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+          </div>
+        </article>
+
+        <article class="status-card status-card--puntos">
+          <div class="status-card__head">
+            <h2 class="status-card__title">Puntos totales</h2>
+            <span class="status-card__value">56</span>
+          </div>
+          <p class="status-card__sub">Te faltan 4 retos para ganar 10 puntos de bonus</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- ═══════════ JUEGOS ═══════════ -->
+    <div class="games-area">
+
+      <section class="games-section games-section--retos" aria-labelledby="retos-title">
+        <div class="balcon">
+          <h2 class="balcon__title" id="retos-title">Retos diarios</h2>
         </div>
-        <div class="streak__counter">
-          <span class="streak__count">12</span>
-          <span class="streak__unit">días</span>
-        </div>
+        <ul class="games-grid">
+          <li>
+            <a class="game-card game-card--acero game-card--done" href="game.html?juego=crucigrama">
+              <span class="game-card__badge" aria-hidden="true"><svg width="16" height="14" viewBox="0 0 16 14"><path d="M1.5 7.5L6 12L14.5 1.5" stroke="#fff" stroke-width="3" fill="none"/></svg></span>
+              <span class="game-card__icon"><img src="svg/crucigrama.svg" width="87" height="87" alt=""></span>
+              <span class="game-card__title">Crucigrama</span>
+              <span class="game-card__status">Completado</span>
+            </a>
+          </li>
+          <li>
+            <a class="game-card game-card--lavanda" href="game.html?juego=sudoku">
+              <span class="game-card__icon"><img src="svg/sudoku.svg" width="87" height="87" alt=""></span>
+              <span class="game-card__title">Sudoku</span>
+              <span class="game-card__status">Reto pendiente</span>
+            </a>
+          </li>
+          <li>
+            <a class="game-card game-card--teal" href="game.html?juego=adivina-palabra">
+              <span class="game-card__icon"><img src="svg/adivina-palabra.svg" width="87" height="87" alt=""></span>
+              <span class="game-card__title">Adivina la palabra</span>
+              <span class="game-card__status">Reto pendiente</span>
+            </a>
+          </li>
+          <li>
+            <a class="game-card game-card--dorado" href="game.html?juego=sopa-letras">
+              <span class="game-card__icon"><img src="svg/sopa-letras.svg" width="87" height="87" alt=""></span>
+              <span class="game-card__title">Sopa de letras</span>
+              <span class="game-card__status">Reto pendiente</span>
+            </a>
+          </li>
+        </ul>
       </section>
 
-
-      <!-- ==============================
-           A3 · ARCHIVO · partidas anteriores
-           Últimos 7 días. Estado de los 4 juegos cada día.
-           No-suscriptores ven el grid pero el paywall corta el archivo más allá.
-           ============================== -->
-      <section class="archive" aria-labelledby="archive-title">
-        <header class="archive__head">
-          <h2 id="archive-title" class="archive__title">Tu última semana</h2>
-          <a class="archive__link" href="#">Ver archivo completo →</a>
-        </header>
-
-        <div class="archive__grid" role="list">
-
-          <a class="archive__day" href="#" role="listitem" aria-label="Jueves 21 · 4 de 4 juegos completados">
-            <span class="archive__day-label">Jue</span>
-            <span class="archive__day-date">21</span>
-            <span class="archive__dots" aria-hidden="true">
-              <span class="archive__dot archive__dot--done"></span>
-              <span class="archive__dot archive__dot--done"></span>
-              <span class="archive__dot archive__dot--done"></span>
-              <span class="archive__dot archive__dot--done"></span>
-            </span>
-          </a>
-
-          <a class="archive__day" href="#" role="listitem" aria-label="Viernes 22 · 3 de 4 juegos completados">
-            <span class="archive__day-label">Vie</span>
-            <span class="archive__day-date">22</span>
-            <span class="archive__dots" aria-hidden="true">
-              <span class="archive__dot archive__dot--done"></span>
-              <span class="archive__dot archive__dot--done"></span>
-              <span class="archive__dot archive__dot--done"></span>
-              <span class="archive__dot"></span>
-            </span>
-          </a>
-
-          <a class="archive__day" href="#" role="listitem" aria-label="Sábado 23 · 4 de 4 juegos completados">
-            <span class="archive__day-label">Sáb</span>
-            <span class="archive__day-date">23</span>
-            <span class="archive__dots" aria-hidden="true">
-              <span class="archive__dot archive__dot--done"></span>
-              <span class="archive__dot archive__dot--done"></span>
-              <span class="archive__dot archive__dot--done"></span>
-              <span class="archive__dot archive__dot--done"></span>
-            </span>
-          </a>
-
-          <a class="archive__day" href="#" role="listitem" aria-label="Domingo 24 · 2 de 4 juegos completados">
-            <span class="archive__day-label">Dom</span>
-            <span class="archive__day-date">24</span>
-            <span class="archive__dots" aria-hidden="true">
-              <span class="archive__dot archive__dot--done"></span>
-              <span class="archive__dot archive__dot--done"></span>
-              <span class="archive__dot"></span>
-              <span class="archive__dot"></span>
-            </span>
-          </a>
-
-          <a class="archive__day" href="#" role="listitem" aria-label="Lunes 25 · 4 de 4 juegos completados">
-            <span class="archive__day-label">Lun</span>
-            <span class="archive__day-date">25</span>
-            <span class="archive__dots" aria-hidden="true">
-              <span class="archive__dot archive__dot--done"></span>
-              <span class="archive__dot archive__dot--done"></span>
-              <span class="archive__dot archive__dot--done"></span>
-              <span class="archive__dot archive__dot--done"></span>
-            </span>
-          </a>
-
-          <a class="archive__day" href="#" role="listitem" aria-label="Martes 26 · 4 de 4 juegos completados">
-            <span class="archive__day-label">Mar</span>
-            <span class="archive__day-date">26</span>
-            <span class="archive__dots" aria-hidden="true">
-              <span class="archive__dot archive__dot--done"></span>
-              <span class="archive__dot archive__dot--done"></span>
-              <span class="archive__dot archive__dot--done"></span>
-              <span class="archive__dot archive__dot--done"></span>
-            </span>
-          </a>
-
-          <a class="archive__day archive__day--today" href="#" role="listitem" aria-label="Hoy miércoles 27 · 1 de 4 juegos completados">
-            <span class="archive__day-label">Hoy</span>
-            <span class="archive__day-date">27</span>
-            <span class="archive__dots" aria-hidden="true">
-              <span class="archive__dot archive__dot--done"></span>
-              <span class="archive__dot"></span>
-              <span class="archive__dot"></span>
-              <span class="archive__dot"></span>
-            </span>
-          </a>
-
+      <!-- ═══════════ PUBLICIDAD · DOBLE ROBA ═══════════ -->
+      <!-- Desktop: columna derecha. Tablet/Mobile: in-flow entre secciones -->
+      <div class="ad ad--dobleroba">
+        <div class="ad__inner">
+          <div class="ad__slot"></div>
+          <span class="ad__label">publicidad</span>
         </div>
+      </div>
 
-        <!-- Paywall suave para no-suscriptores. Se oculta si el usuario está suscrito. -->
-        <div class="archive__paywall">
-          <p class="archive__paywall-copy">
-            <strong>Hazte suscriptor</strong> y juega cualquier crucigrama, sudoku, palabra del día o autodefinido de los últimos 12 meses.
-          </p>
-          <a class="btn btn--dark" href="#">Suscribirme</a>
+      <section class="games-section games-section--entretener" aria-labelledby="entretener-title">
+        <div class="balcon">
+          <h2 class="balcon__title" id="entretener-title">Para entretenerte</h2>
         </div>
+        <ul class="games-grid">
+          <li>
+            <a class="game-card game-card--rosa" href="game.html?juego=caramelos">
+              <span class="game-card__icon"><img src="svg/caramelos.svg" width="87" height="87" alt=""></span>
+              <span class="game-card__title">Caramelos</span>
+              <span class="game-card__status">Reto pendiente</span>
+            </a>
+          </li>
+          <li>
+            <a class="game-card game-card--oliva" href="game.html?juego=buscaminas">
+              <span class="game-card__icon"><img src="svg/buscaminas.svg" width="87" height="87" alt=""></span>
+              <span class="game-card__title">Buscaminas</span>
+              <span class="game-card__status">Reto pendiente</span>
+            </a>
+          </li>
+        </ul>
       </section>
 
     </div>
-  </main>
 
-  <!-- ==============================
-       FOOTER
-       ============================== -->
-  <footer class="site-footer">Footer</footer>
+  </div>
 
-</div>
+  <!-- ═══════════ FOOTER ═══════════ -->
+  <footer class="site-footer">
+    <p>¿Necesitas ayuda? <a href="mailto:ayuda@elconfidencial.com">Escríbenos a ayuda@elconfidencial.com</a> o llámanos a <a href="tel:+34910781090">91 078 10 90</a></p>
+  </footer>
+
 </body>
 </html>

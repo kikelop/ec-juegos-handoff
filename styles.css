@@ -1,8 +1,8 @@
 /* ==========================================================================
-   EC Juegos · Estilos compartidos
-   Sistema de diseño: SDD Suscripciones · Marshall 3 · Confi Serif/Sans
-   Fuentes: ./fonts/  ·  Iconos: ./svg/
-   Single source of truth de tokens: SDD CONTEXT.md
+   EC Juegos v2 · Landing con capa de retención
+   Figma: vxsBIea26DQWgdLHM5EDpC · página "Pruebas inno"
+   Frames: Desktop 859:2755 · Tablet 886:3082 · Mobile 886:3209
+   Sistema de diseño: SDD (ec.color.v2) · Confi Serif/Sans · header Roboto
    ========================================================================== */
 
 
@@ -45,800 +45,451 @@
 }
 
 
-/* ----------  TOKENS Marshall 3  ---------- */
+/* ----------  TOKENS  ---------- */
 
 :root {
-  /* Semánticos */
-  --text-primary:     #121212;
-  --text-secondary:   #737373;
-  --text-tertiary:    #a3a3a3;
-  --link-default:     #2380be;
-  --border-subtle:    #bfc7ce;
+  /* Texto y neutros (ec.color.v2) */
+  --text-primary: #121212;        /* semantic/text/primary */
+  --text-secondary: #737373;      /* semantic/text/secondary */
+  --text-footer: #687476;         /* corporativo/piedra */
+  --ink-card: #0F2124;            /* core/azul/900 — texto sobre pasteles */
+  --border-subtle: #BFC7CE;       /* core/acero/300 (acero frío) */
+  --divider: #DADADA;             /* divider header producción */
+  --bg-canvas: #FFFFFF;
 
-  /* Neutrales */
-  --neutral-0:        #ffffff;
-  --neutral-25:       #f9f9f9;
-  --neutral-50:       #efefef;
-  --neutral-100:      #e2e2e2;
+  /* Publicidad */
+  --ad-bg: #F9F9F9;
+  --ad-slot: #EFEFEF;             /* core/neutral/50 */
+  --ad-label: #A3A3A3;
 
-  /* Steel */
-  --steel-150:        #d2d8dd;
-  --steel-200:        #bfc7ce;
+  /* Header producción */
+  --cta-yellow: #F2C001;          /* amarillo Suscríbete header EC */
+  --breaking-red: #F81001;
 
-  /* Fondos card-head — vinculados a las variables Figma del frame `612:2539` */
-  --bg-crucigrama:    var(--neutral-0);    /* Core/Neutral/0   · #ffffff */
-  --bg-sudoku:        var(--steel-150);    /* Core/Steel/150   · #d2d8dd */
-  --bg-wordle:        var(--steel-150);    /* Core/Steel/150   · #d2d8dd */
-  --bg-autodefinidos: var(--steel-150);    /* Core/Steel/150   · #d2d8dd */
+  /* Pasteles de cards de juego — derivados de primitives ec.color.v2
+     (mismo tono, S/L a franja pastel). Pendiente: semantic/juegos/* */
+  --card-acero: #D2D8DD;          /* = core/acero/150 (token existente) */
+  --card-lavanda: #CFCAE9;        /* ⚠ fuera de paleta EC — primitive nuevo pendiente */
+  --card-teal: #C3E3E9;           /* de corporativo/azul-oscuro */
+  --card-dorado: #ECE0BC;         /* de dorado dataviz #E9C54A (propuesto) */
+  --card-rosa: #EBC6DF;           /* orchid suavizado */
+  --card-oliva: #DCDBB1;          /* de oliva dataviz #767324 (propuesto) */
 
-  /* Botón "Jugar" oscuro · DEUDA SDD §15.11
-     El SDD canónico tiene Button.featured con bg Steel/200. Aquí Figma usa
-     un negro/azul muy oscuro full-width estilo "Continuar". Se mapea a
-     Blue/900 #0f2124 (Marshall 3). Pendiente abrir D nueva. */
-  --btn-dark:         #0f2124;
-  --btn-dark-hover:   #1d4044;        /* Blue/700 */
-
-  /* Spacing — escala oficial §5.5 */
-  --space-8:  8px;
-  --space-12: 12px;
-  --space-16: 16px;
-  --space-20: 20px;
-  --space-24: 24px;
-  --space-32: 32px;
-  --space-40: 40px;
-  --space-48: 48px;
-  --space-64: 64px;
-
-  /* Radius */
-  --radius-sm: 2px;
-  --radius-md: 4px;
-  --radius-lg: 8px;
+  /* Tipos */
+  --font-serif: "Confi Serif", Georgia, serif;
+  --font-sans: "Confi Sans", "Helvetica Neue", Arial, sans-serif;
+  --font-header: "Roboto", -apple-system, Arial, sans-serif;
 }
 
 
-/* ----------  RESET MÍNIMO  ---------- */
+/* ----------  RESET  ---------- */
 
-*,
-*::before,
-*::after { box-sizing: border-box; }
-
-html, body {
-  margin: 0;
-  padding: 0;
-}
-
+*, *::before, *::after { box-sizing: border-box; }
 body {
-  background: var(--neutral-0);
+  margin: 0;
+  background: var(--bg-canvas);
   color: var(--text-primary);
-  font-family: "Confi Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  font-size: 15px;
-  line-height: 1.5;
+  font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
-
-button {
-  font-family: inherit;
-  font-size: inherit;
-  cursor: pointer;
-  border: 0;
-  background: transparent;
-  padding: 0;
-  color: inherit;
-}
-
-a {
-  color: var(--link-default);
-  text-decoration: underline;
-  text-underline-offset: 2px;
-}
+h1, h2, p, ul { margin: 0; }
+ul { padding: 0; list-style: none; }
+a { color: inherit; text-decoration: none; }
+img { display: block; }
 
 
-/* ----------  LAYOUT contenedor  ---------- */
-
-.layout {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-}
-
-.container {
-  width: 100%;
-  max-width: 1280px;
-  margin-inline: auto;
-  padding-inline: var(--space-24);
-}
-
-@media (max-width: 600px) {
-  .container { padding-inline: var(--space-16); }
-}
-
-
-/* ----------  HEADER  ---------- */
+/* ==========================================================================
+   HEADER EC (producción · Roboto 15)
+   ========================================================================== */
 
 .site-header {
-  border-bottom: 0.7px solid var(--border-subtle);
+  background: var(--bg-canvas);
+  border-bottom: 1px solid var(--divider);
 }
-
 .site-header__inner {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 49px;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 24px;
+  font-family: var(--font-header);
+  font-size: 15px;
+}
+.site-header__left,
+.site-header__right {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+.site-header__menu {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  color: var(--text-primary);
+  cursor: pointer;
+}
+.site-header__breaking {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-left: 44px;
+}
+.site-header__breaking-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--breaking-red);
+}
+.site-header__logo {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.site-header__cta {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding-block: var(--space-20);
-}
-
-.site-header__logo {
-  font-family: "Confi Serif";
-  font-weight: 700;
-  font-size: 24px;
-  line-height: 1;
-  color: var(--text-primary);
-  letter-spacing: -0.5px;
-  text-decoration: none;
+  width: 90px;
+  height: 32px;
+  border-radius: 2px;
+  background: var(--cta-yellow);
 }
 
 
-/* ----------  HERO  ---------- */
+/* ==========================================================================
+   ESTRUCTURA · flujo vertical (gap 40, footer a 88)
+   ========================================================================== */
 
-.hero {
-  text-align: center;
-  padding-block: var(--space-24) var(--space-32);
-}
-
-.hero__title {
-  font-family: "Confi Serif";
-  font-weight: 700;
-  font-size: 40px;     /* h2 token §5.1 */
-  line-height: 1.1;
-  letter-spacing: -1px;
-  color: var(--text-primary);
-  margin: 0 0 var(--space-8);
-}
-
-.hero__subtitle {
-  font-family: "Confi Sans";
-  font-weight: 400;
-  font-size: 15px;     /* parrafo §5.1 */
-  color: var(--text-secondary);
-  margin: 0;
-  max-width: 720px;
-  margin-inline: auto;
-}
-
-@media (max-width: 600px) {
-  .hero { padding-block: var(--space-16) var(--space-24); }
-  .hero__title { font-size: 32px; }      /* h3 token §5.1 */
-}
-
-
-/* ----------  PUBLICIDAD (placeholders)  ---------- */
-
-.ad {
-  background: var(--neutral-25);
+.page {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: var(--space-16);
+  gap: 40px;
+  padding-top: 40px;
 }
 
-.ad__slot {
+.hero-block,
+.games-area { width: 1152px; }
+
+
+/* ==========================================================================
+   PUBLICIDAD (variantes por dispositivo)
+   ========================================================================== */
+
+.ad {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+.ad--billboard {
+  width: 1012px;       /* Tipo=Billboard · Dispositivo=Desktop */
+  padding: 16px;
+  background: var(--ad-bg);
+}
+.ad--billboard .ad__slot {
   width: 100%;
-  background: #ffa7a7;            /* Red/600 — visualiza placeholder */
+  height: 250px;
+  background: var(--ad-slot);
+}
+.ad__label {
+  font-family: var(--font-sans);
+  font-size: 10px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: var(--ad-label);
+}
+.ad--dobleroba { padding: 0 18px; align-self: start; }
+.ad--dobleroba .ad__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  width: 332px;        /* Tipo=Doble roba (todas las variantes: inner 332) */
+  padding: 16px;
+  background: var(--ad-bg);
+}
+.ad--dobleroba .ad__slot {
+  width: 300px;
+  height: 600px;
+  background: var(--ad-slot);
+}
+
+
+/* ==========================================================================
+   BALCÓN (SectionHeading) · título con subrayado 4px + línea acero
+   ========================================================================== */
+
+.balcon {
+  display: flex;
+  align-items: flex-end;
+  margin-bottom: 24px;
+}
+.balcon__title {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: 22px;
+  line-height: 1.2;
+  color: var(--text-primary);
+  padding: 0 8px 12px 0;
+  border-bottom: 4px solid var(--text-primary);
+}
+.balcon::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  margin-bottom: 2px;
+  background: var(--border-subtle);
+}
+.balcon--hero .balcon__title { font-size: 32px; }
+
+
+/* ==========================================================================
+   HERO + RETENCIÓN
+   ========================================================================== */
+
+.hero-block {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.hero-block__subtitle {
+  font-size: 18px;
+  line-height: 1.33;
+  color: var(--text-secondary);
+  padding-bottom: 4px;
+}
+
+.status-row {
+  display: grid;
+  grid-template-columns: 760px 368px;
+  gap: 24px;
+}
+.status-card {
+  background: var(--bg-canvas);
+  border: 1px solid var(--border-subtle);
+  border-radius: 4px;
+  padding: 24px;
+}
+.status-card__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.status-card__title {
+  font-family: var(--font-serif);
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 1.2;
+  letter-spacing: -0.3px;
+}
+.status-card__value {
+  font-family: var(--font-serif);
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 30px;
+}
+.status-card__sub {
+  margin-top: 8px;
+  font-size: 15px;
+  line-height: 21px;
+  color: var(--text-secondary);
+}
+.status-card__dots {
+  display: flex;
+  gap: 8px;
+  margin-top: 16px;
+}
+.dot {
+  width: 24px;
+  height: 24px;
+  border: 1px solid var(--border-subtle);
+}
+.dot--done {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--neutral-0);
-  font-weight: 700;
-}
-
-.ad__slot--billboard { aspect-ratio: 970 / 250; }
-.ad__slot--sidebar   { aspect-ratio: 300 / 600; }
-
-.ad__label {
-  margin-top: var(--space-12);
-  font-family: "Confi Sans";
-  font-weight: 700;
-  font-size: 11px;
-  letter-spacing: 0.8px;
-  text-transform: uppercase;
-  color: var(--text-tertiary);
+  border: 1px solid #000;
+  border-radius: 2px;
+  background: var(--ink-card);
 }
 
 
-/* ----------  SECCIÓN PRINCIPAL CON ASIDE  ---------- */
+/* ==========================================================================
+   JUEGOS · grid + doble roba
+   ========================================================================== */
 
-.main {
-  flex: 1;
-  padding-block: var(--space-24) var(--space-64);
-}
-
-.main__row {
+.games-area {
   display: grid;
-  grid-template-columns: 1fr 320px;
-  gap: var(--space-32);
-  margin-top: var(--space-48);
+  grid-template-columns: 760px 368px;
+  grid-template-areas:
+    "retos ad"
+    "entretener ad";
+  gap: 40px 24px;
 }
-
-.main__aside {
-  position: sticky;
-  top: var(--space-24);
-  align-self: start;
+.games-section--retos { grid-area: retos; }
+.games-section--entretener { grid-area: entretener; }
+.games-area .ad--dobleroba {
+  grid-area: ad;
+  position: sticky;       /* mejora sobre Figma: acompaña el scroll */
+  top: 24px;
 }
-
-@media (max-width: 900px) {
-  .main__row {
-    grid-template-columns: 1fr;
-    gap: var(--space-32);
-  }
-  .main__aside { position: static; }
-  .ad__slot--sidebar { aspect-ratio: 970 / 250; }
-}
-
-
-/* ----------  GRID DE CARDS DE JUEGO  ---------- */
 
 .games-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--space-16);
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
 }
-
-@media (max-width: 600px) {
-  .games-grid { grid-template-columns: 1fr; }
-}
-
-
-/* ----------  CARD DE JUEGO  ---------- */
 
 .game-card {
-  display: flex;
-  flex-direction: column;
-  border: 0.7px solid var(--border-subtle);
-  border-radius: var(--radius-md);
-  background: var(--neutral-0);
-  overflow: hidden;
-}
-
-.game-card__head {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: var(--space-16);
-  padding: var(--space-40) var(--space-24);
-  min-height: 260px;
-  border-bottom: 0.7px solid var(--border-subtle);
-  --ink: var(--text-primary);
-  color: var(--ink);
+  aspect-ratio: 1;
+  padding: 10px;
+  color: var(--ink-card);
 }
-
-.game-card__head--crucigrama    { background: var(--bg-crucigrama); }
-.game-card__head--sudoku        { background: var(--bg-sudoku); }
-.game-card__head--wordle        { background: var(--bg-wordle); }
-.game-card__head--autodefinidos { background: var(--bg-autodefinidos); }
-
-.game-card__icon {
-  width: 96px;
-  height: 96px;
-  display: block;
-  flex-shrink: 0;
-}
-
-.game-card__icon svg {
-  width: 100%;
-  height: 100%;
-  display: block;
-}
-
+.game-card__icon { margin-bottom: 16px; }
 .game-card__title {
-  font-family: "Confi Serif";
+  font-family: var(--font-serif);
   font-weight: 700;
   font-size: 28px;
-  line-height: 1.1;
-  letter-spacing: -0.3px;
+  line-height: 26.4px;
+  letter-spacing: -0.4px;
   text-align: center;
-  margin: 0;
-  color: inherit;
 }
-
-.game-card__actions {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-8);
-  padding: var(--space-16);
-}
-
-
-/* ----------  BOTONES  ---------- */
-
-.btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 48px;
-  padding-inline: var(--space-24);
-  border-radius: var(--radius-sm);
-  border: 0.7px solid var(--text-primary);
-  background: var(--neutral-0);
-  color: var(--text-primary);
-  font-family: "Confi Sans";
-  font-weight: 500;
-  font-size: 15px;
-  letter-spacing: 0;
-  cursor: pointer;
-  text-decoration: none;
-  transition: opacity 0.12s ease;
-}
-
-.btn:hover {
-  opacity: 0.7;
-}
-
-.btn--dark {
-  background: var(--btn-dark);
-  border-color: var(--btn-dark);
-  color: var(--neutral-0);
-}
-
-
-/* ----------  PÁGINA DE JUEGO · Balcón de sección + metadatos (B1)  ---------- */
-
-.game-balcony {
-  border-bottom: 0.7px solid var(--border-subtle);
-  margin-bottom: var(--space-24);
-}
-
-.game-balcony__row {
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  gap: var(--space-16);
-  flex-wrap: wrap;
-}
-
-.game-balcony__title {
-  display: inline-block;
-  padding-bottom: var(--space-12);
-  margin: 0 0 -1px;
-  border-bottom: 4px solid var(--text-primary);
-  font-family: "Confi Sans";
+.game-card__status {
+  margin-top: 16px;
+  font-family: var(--font-sans);
   font-weight: 700;
-  font-size: 22px;
-  line-height: 1.2;
-  letter-spacing: 0;
-  color: var(--text-primary);
-}
-
-.game-balcony__meta {
-  font-family: "Confi Sans";
-  font-weight: 400;
   font-size: 13px;
-  color: var(--text-secondary);
-  padding-bottom: var(--space-12);
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-8);
-}
-
-.game-balcony__meta strong {
-  color: var(--text-primary);
-  font-weight: 700;
-}
-
-.game-balcony__stats {
-  display: flex;
-  gap: var(--space-24);
-  margin-top: var(--space-16);
-  padding-bottom: var(--space-4, 4px);
-  font-family: "Confi Sans";
-  font-size: 13px;
-  color: var(--text-secondary);
-}
-
-.game-balcony__stat {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-}
-
-.game-balcony__stat strong {
-  color: var(--text-primary);
-  font-weight: 700;
-}
-
-@media (max-width: 600px) {
-  .game-balcony__stats { gap: var(--space-16); flex-wrap: wrap; }
-}
-
-
-/* ----------  PÁGINA DE JUEGO · SLOT del juego  ---------- */
-
-.game-slot {
-  background: var(--neutral-100);
-  border-radius: var(--radius-md);
-  aspect-ratio: 4 / 5;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--text-tertiary);
-  font-family: "Confi Sans";
-  font-size: 13px;
-  letter-spacing: 0.4px;
+  line-height: 16.5px;
+  letter-spacing: 1px;
   text-transform: uppercase;
 }
-
-@media (min-width: 900px) {
-  .game-slot { aspect-ratio: 4 / 5; min-height: 600px; }
-}
-
-
-/* ----------  STREAK STRIP · landing (A1)  ---------- */
-
-.streak {
-  margin-top: var(--space-48);
-  background: var(--text-primary);
-  color: var(--neutral-0);
-  border-radius: var(--radius-md);
-  padding: var(--space-32) var(--space-40);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--space-24);
-  flex-wrap: wrap;
-}
-
-.streak__left {
-  display: flex;
-  align-items: center;
-  gap: var(--space-20);
-  flex: 1;
-}
-
-.streak__flame {
-  width: 40px;
-  height: 40px;
-  flex-shrink: 0;
-  color: var(--neutral-0);
-}
-
-.streak__flame svg { width: 100%; height: 100%; display: block; }
-
-.streak__title {
-  font-family: "Confi Serif";
-  font-weight: 700;
-  font-size: 24px;
-  line-height: 1.2;
-  margin: 0 0 4px;
-  color: var(--neutral-0);
-  letter-spacing: -0.3px;
-}
-
-.streak__sub {
-  font-family: "Confi Sans";
-  font-weight: 400;
-  font-size: 14px;
-  color: var(--steel-150);
-  margin: 0;
-}
-
-.streak__counter {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  flex-shrink: 0;
-}
-
-.streak__count {
-  font-family: "Confi Serif";
-  font-weight: 700;
-  font-size: 64px;
-  line-height: 1;
-  color: var(--neutral-0);
-}
-
-.streak__unit {
-  font-family: "Confi Sans";
-  font-weight: 700;
-  font-size: 12px;
-  letter-spacing: 0.8px;
-  text-transform: uppercase;
-  color: var(--steel-150);
-  margin-top: 4px;
-}
-
-@media (max-width: 600px) {
-  .streak { padding: var(--space-24) var(--space-20); }
-  .streak__count { font-size: 48px; }
-  .streak__title { font-size: 20px; }
-}
-
-
-/* ----------  ARCHIVO · partidas anteriores (A3)  ---------- */
-
-.archive {
-  margin-top: var(--space-48);
-}
-
-.archive__head {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  margin-bottom: var(--space-20);
-  gap: var(--space-16);
-  flex-wrap: wrap;
-}
-
-.archive__title {
-  font-family: "Confi Serif";
-  font-weight: 700;
-  font-size: 24px;
-  line-height: 1.2;
-  margin: 0;
-  letter-spacing: -0.2px;
-}
-
-.archive__link {
-  font-family: "Confi Sans";
-  font-weight: 500;
-  font-size: 14px;
-  color: var(--link-default);
-  text-decoration: none;
-}
-
-.archive__link:hover { opacity: 0.7; }
-
-.archive__grid {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  gap: var(--space-8);
-}
-
-@media (max-width: 900px) {
-  .archive__grid { grid-template-columns: repeat(4, 1fr); }
-}
-@media (max-width: 600px) {
-  .archive__grid {
-    grid-template-columns: repeat(7, minmax(120px, 1fr));
-    overflow-x: auto;
-    padding-bottom: var(--space-8);
-  }
-}
-
-.archive__day {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-12);
-  padding: var(--space-16) var(--space-12);
-  border: 0.7px solid var(--border-subtle);
-  border-radius: var(--radius-md);
-  background: var(--neutral-0);
-  text-decoration: none;
-  color: var(--text-primary);
-  transition: opacity 0.12s ease;
-}
-
-.archive__day:hover { opacity: 0.7; }
-
-.archive__day--today {
-  background: var(--text-primary);
-  color: var(--neutral-0);
-  border-color: var(--text-primary);
-}
-
-.archive__day-label {
-  font-family: "Confi Sans";
-  font-weight: 700;
-  font-size: 11px;
-  letter-spacing: 0.6px;
-  text-transform: uppercase;
-  color: inherit;
-  opacity: 0.7;
-}
-
-.archive__day-date {
-  font-family: "Confi Serif";
-  font-weight: 700;
-  font-size: 22px;
-  line-height: 1;
-  color: inherit;
-}
-
-.archive__dots {
-  display: flex;
-  gap: 4px;
-  margin-top: var(--space-8);
-}
-
-.archive__dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 999px;
-  border: 1px solid var(--border-subtle);
-  background: transparent;
-}
-
-.archive__dot--done {
-  background: currentColor;
-  border-color: currentColor;
-}
-
-.archive__day--today .archive__dot {
-  border-color: var(--steel-150);
-}
-
-.archive__paywall {
-  margin-top: var(--space-24);
-  padding: var(--space-24) var(--space-32);
-  border: 0.7px solid var(--border-subtle);
-  border-radius: var(--radius-md);
-  background: var(--neutral-25);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--space-24);
-  flex-wrap: wrap;
-}
-
-.archive__paywall-copy {
-  font-family: "Confi Sans";
-  font-size: 14px;
-  color: var(--text-secondary);
-  max-width: 520px;
-}
-
-.archive__paywall-copy strong {
-  color: var(--text-primary);
-  font-weight: 700;
-}
-
-.archive__paywall .btn {
-  width: auto;
-  flex-shrink: 0;
-}
-
-
-/* ----------  MODAL POST-PARTIDA · game.html (B3 + C2)  ---------- */
-
-.post-modal {
-  position: fixed;
-  inset: 0;
-  background: rgba(18, 18, 18, 0.6);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: var(--space-24);
-  z-index: 100;
-}
-
-.post-modal__panel {
-  position: relative;
-  background: var(--neutral-0);
-  border-radius: var(--radius-md);
-  max-width: 480px;
-  width: 100%;
-  padding: var(--space-40) var(--space-32);
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-24);
-  max-height: calc(100vh - 48px);
-  overflow-y: auto;
-}
-
-.post-modal__close {
+.game-card__badge {
   position: absolute;
-  top: var(--space-16);
-  right: var(--space-16);
-  background: transparent;
-  border: 0;
-  color: var(--text-secondary);
-  font-size: 24px;
-  line-height: 1;
-  cursor: pointer;
-  padding: 8px;
-}
-
-.post-modal__close:hover { opacity: 0.7; }
-
-.post-modal__head {
-  text-align: center;
-}
-
-.post-modal__eyebrow {
-  font-family: "Confi Sans";
-  font-weight: 700;
-  font-size: 12px;
-  letter-spacing: 0.8px;
-  text-transform: uppercase;
-  color: var(--text-secondary);
-  margin-bottom: var(--space-8);
-}
-
-.post-modal__title {
-  font-family: "Confi Serif";
-  font-weight: 700;
-  font-size: 32px;
-  line-height: 1.1;
-  margin: 0;
-  letter-spacing: -0.5px;
-}
-
-.post-modal__share {
-  background: var(--neutral-25);
-  border-radius: var(--radius-md);
-  padding: var(--space-24);
+  top: 12px;
+  right: 12px;
   display: flex;
-  flex-direction: column;
   align-items: center;
-  gap: var(--space-16);
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: 1px solid #000;
+  border-radius: 2px;
+  background: var(--ink-card);
 }
 
-.post-modal__grid {
-  font-size: 24px;
-  line-height: 1.4;
-  letter-spacing: 2px;
-  text-align: center;
-}
-
-.post-modal__stats {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: var(--space-12);
-  padding: var(--space-16) 0;
-  border-top: 0.7px solid var(--border-subtle);
-  border-bottom: 0.7px solid var(--border-subtle);
-}
-
-.post-modal__stat {
-  text-align: center;
-}
-
-.post-modal__stat-num {
-  display: block;
-  font-family: "Confi Serif";
-  font-weight: 700;
-  font-size: 24px;
-  line-height: 1.1;
-  color: var(--text-primary);
-}
-
-.post-modal__stat-label {
-  display: block;
-  font-family: "Confi Sans";
-  font-size: 11px;
-  letter-spacing: 0.6px;
-  text-transform: uppercase;
-  color: var(--text-secondary);
-  margin-top: 4px;
-}
-
-.post-modal__actions {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-8);
-}
-
-@media (max-width: 600px) {
-  .post-modal__panel { padding: var(--space-32) var(--space-20); }
-  .post-modal__title { font-size: 26px; }
-  .post-modal__grid { font-size: 20px; }
-  .post-modal__stat-num { font-size: 20px; }
-}
+/* Variantes de color (paleta pastel) */
+.game-card--acero   { background: var(--card-acero); }
+.game-card--lavanda { background: var(--card-lavanda); }
+.game-card--teal    { background: var(--card-teal); }
+.game-card--dorado  { background: var(--card-dorado); }
+.game-card--rosa    { background: var(--card-rosa); }
+.game-card--oliva   { background: var(--card-oliva); }
 
 
-/* ----------  FOOTER (placeholder para handoff)  ---------- */
+/* ==========================================================================
+   FOOTER
+   ========================================================================== */
 
 .site-footer {
-  background: var(--text-primary);
-  color: var(--neutral-0);
-  min-height: 200px;
   display: flex;
   align-items: center;
   justify-content: center;
-  text-align: center;
-  font-family: "Confi Sans";
-  font-weight: 500;
-  font-size: 16px;
-  letter-spacing: 0.5px;
+  min-height: 66px;
+  margin-top: 88px;
+  font-size: 14px;
+  line-height: 22px;
+  color: var(--text-footer);
+}
+.site-footer a { text-decoration: underline; }
+
+
+/* ==========================================================================
+   TABLET · 768–1199 (frame 886:3082 · contenido 720)
+   ========================================================================== */
+
+@media (max-width: 1199px) {
+  .hero-block,
+  .games-area { width: 720px; }
+
+  .ad--billboard {
+    width: 768px;        /* Tipo=Billboard · Dispositivo=Tablet */
+  }
+
+  /* Retención a mitades 348+348 */
+  .status-row { grid-template-columns: 1fr 1fr; }
+
+  /* Doble roba pasa a in-flow entre secciones, centrada */
+  .games-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+  }
+  .games-area .ad--dobleroba {
+    position: static;
+    order: 2;
+    align-self: center;
+  }
+  .games-section { width: 100%; }
+  .games-section--retos { order: 1; }
+  .games-section--entretener { order: 3; }
+}
+
+
+/* ==========================================================================
+   MOBILE · <768 (frame 886:3209 · contenido 343)
+   ========================================================================== */
+
+@media (max-width: 767px) {
+  /* Header compacto: solo menú + logo + CTA */
+  .site-header__inner { padding: 0 16px; }
+  .site-header__menu span,
+  .site-header__breaking,
+  .site-header__login { display: none; }
+  .site-header__logo img { width: 172px; height: 15px; }
+
+  .hero-block,
+  .games-area { width: 343px; }
+
+  /* Billboard mobile, y baja tras el bloque de retención */
+  .ad--billboard {
+    width: 320px;        /* Tipo=Billboard · Dispositivo=Mobile */
+    order: 2;
+  }
+  .ad--billboard .ad__slot { height: 210px; }
+  .hero-block { order: 1; gap: 24px; }
+  .games-area { order: 3; }
+
+  .balcon { margin-bottom: 16px; }
+  .balcon--hero .balcon__title { font-size: 22px; }
+
+  /* Retención apilada y compacta (sin dots) */
+  .status-row {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .status-card { padding: 16px; }
+  .status-card__dots { display: none; }
+
+  /* Juegos a 1 columna */
+  .games-grid { grid-template-columns: 1fr; }
+
+  .site-footer {
+    width: 343px;
+    margin: 88px auto 0;
+    text-align: center;
+  }
 }

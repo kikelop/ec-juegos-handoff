@@ -1,22 +1,17 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100" fill="none">
-  <path d="M94 6H6V94H94V6Z" fill="#ffffff" stroke="currentColor" stroke-width="5"/>
-  <g font-family="Georgia, 'Times New Roman', serif" font-weight="700" font-size="15" fill="currentColor" text-anchor="middle">
-    <text x="20" y="27">E</text>
-    <text x="40" y="27">C</text>
-    <text x="60" y="27">A</text>
-    <text x="80" y="27">R</text>
-    <text x="20" y="48">M</text>
-    <text x="40" y="48">A</text>
-    <text x="60" y="48">D</text>
-    <text x="80" y="48">O</text>
-    <text x="20" y="69">N</text>
-    <text x="40" y="69">I</text>
-    <text x="60" y="69">P</text>
-    <text x="80" y="69">S</text>
-    <text x="20" y="90">T</text>
-    <text x="40" y="90">R</text>
-    <text x="60" y="90">L</text>
-    <text x="80" y="90">U</text>
-  </g>
-  <rect x="30" y="38" width="60" height="20" rx="10" fill="none" stroke="currentColor" stroke-width="3"/>
+<svg width="87" height="87" viewBox="0 0 87 87" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_876_1568)">
+<path d="M81.4322 6.19775C81.4322 5.64547 80.9844 5.19775 80.4322 5.19775H6.19775C5.64547 5.19775 5.19775 5.64547 5.19775 6.19775V80.4322C5.19775 80.9844 5.64547 81.4322 6.19775 81.4322H80.4322C80.9844 81.4322 81.4322 80.9844 81.4322 80.4322V6.19775Z" fill="white" stroke="#0F2124" stroke-width="4.3315"/>
+<path d="M24.2563 5.19775V81.4322" stroke="#0F2124" stroke-width="2"/>
+<path d="M43.3149 5.19775V81.4322" stroke="#0F2124" stroke-width="2"/>
+<path d="M62.3737 5.19775V81.4322" stroke="#0F2124" stroke-width="2"/>
+<path d="M5.19775 24.2563H81.4322" stroke="#0F2124" stroke-width="2"/>
+<path d="M5.19775 43.3149H81.4322" stroke="#0F2124" stroke-width="2"/>
+<path d="M5.19775 62.3735H81.4322" stroke="#0F2124" stroke-width="2"/>
+<path d="M12.6941 12.694C14.9337 10.4543 18.5654 10.4543 20.8051 12.694L73.9355 65.8244C76.1751 68.064 76.1751 71.6957 73.9355 73.9354C71.6958 76.175 68.0641 76.175 65.8244 73.9354L12.6941 20.805C10.4544 18.5654 10.4544 14.9337 12.6941 12.694Z" fill="#0F2124" stroke="white" stroke-width="3" stroke-linecap="round"/>
+</g>
+<defs>
+<clipPath id="clip0_876_1568">
+<rect width="86.63" height="86.63" fill="white"/>
+</clipPath>
+</defs>
 </svg>
