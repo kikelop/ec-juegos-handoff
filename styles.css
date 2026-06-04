@@ -436,7 +436,7 @@ img { display: block; }
       0 10px 20px -10px rgba(15, 33, 36, 0.14),
       0 2px 6px rgba(15, 33, 36, 0.04);
   }
-  .game-card:hover .game-card__inner { transform: scale(1.02); }
+  .game-card:hover .game-card__inner { transform: scale(1.035); }
   .game-card:active {
     transform: translateY(-1px);
     transition-duration: 0.15s;
