@@ -86,15 +86,19 @@ Placeholders con fondo `#F9F9F9`, slot `#EFEFEF` y label "publicidad". El ad-ser
 
 Posiciones: billboard tras el header en desktop/tablet; en **mobile baja tras el bloque de retención**. Doble roba: columna derecha en desktop (sticky), centrada entre "Retos diarios" y "Para entretenerte" en tablet/mobile.
 
-## Breakpoints
+## Breakpoints — fluido entre cortes
+
+El layout es **adaptativo Y fluido**: los contenedores usan `max-width` + `100%` y las columnas `1fr`, así que entre cortes el contenido crece/encoge en vez de saltar entre anchos fijos. En los anchos exactos de Figma (1512 / 768 / 375) el render coincide al pixel.
 
 | | Corte | Contenido | Grid juegos | Retención |
 |---|---|---|---|---|
-| Desktop | ≥1200px | 1152 (760 + 368 sidebar) | 2 col · cards 368 | 760 + 368, con dots |
-| Tablet | 768–1199px | 720 | 2 col · cards 348 | mitades 348+348, con dots |
-| Mobile | <768px | 343 | 1 col · cards 343 | apilada, compacta, **sin dots** |
+| Desktop | ≥1200px | fluido hasta 1152 (1fr + 368 sidebar) | 2 col fluidas (a 1512: 368) | 1fr + 368, con dots |
+| Tablet | 600–1199px | fluido hasta 720 | 2 col fluidas (a 768: 348) | mitades 1fr+1fr, con dots |
+| Mobile | <600px | fluido (a 375: 343) | 1 col fluida | apilada, compacta, **sin dots** |
 
-Pixel-match verificado contra los frames de Figma a 1512 / 768 / 375 (alturas ±25px).
+El header compacto tiene su propio corte (<768px). El billboard tablet va full-bleed (`100%` del viewport); el mobile capa a 320. La doble roba capa a 368 (`max-width: 100%` para viewports estrechos).
+
+Verificado sin overflow horizontal a 1512, 1280, 1024, 768, 700, 500, 414, 375 y 360.
 
 ---
 
