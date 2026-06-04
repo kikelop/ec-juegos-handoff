@@ -412,6 +412,13 @@ img { display: block; }
 .game-card--rosa    { background: var(--card-rosa); }
 .game-card--oliva   { background: var(--card-oliva); }
 
+/* Completado: no pulsable, aspecto desactivado (el badge mantiene fuerza) */
+.game-card--done {
+  pointer-events: none;
+  cursor: default;
+}
+.game-card--done .game-card__inner { opacity: 0.45; }
+
 /* Hover (solo puntero fino): la card se eleva, el contenido hace zoom.
    Ease tipo GSAP power4.out → cubic-bezier(0.22, 1, 0.36, 1) */
 @media (hover: hover) and (pointer: fine) {
@@ -536,8 +543,9 @@ img { display: block; }
   .status-card { padding: 16px; }
   .status-card__dots { display: none; }
 
-  /* Juegos a 1 columna */
+  /* Juegos a 1 columna · los completados bajan al final */
   .games-grid { grid-template-columns: 1fr; }
+  .games-grid li:has(.game-card--done) { order: 1; }
 
   .site-footer {
     margin: 88px 16px 0;

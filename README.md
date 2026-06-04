@@ -13,7 +13,7 @@ Maqueta HTML+CSS de la sección de Juegos para el hackatón de EINNO, **v2 con c
 - **Capa de retención:** cards "Reto diario" (con progreso de 4 dots) y "Puntos totales"
 - **Dos secciones de juegos:** "Retos diarios" (4 juegos) y "Para entretenerte" (2 juegos)
 - **6 juegos** con paleta pastel propia: Crucigrama, Sudoku, Adivina la palabra, Sopa de letras, Caramelos, Buscaminas
-- **Estados de card:** `.game-card--done` (badge check + caption COMPLETADO) vs pendiente
+- **Estados de card:** `.game-card--done` (badge check + caption COMPLETADO) vs pendiente. La completada queda **desactivada** (sin href, `aria-disabled`, `pointer-events: none`, contenido al 45%) y en mobile **baja al final de su sección** (`li:has(.game-card--done) { order: 1 }`)
 - **Publicidad con variantes por dispositivo** (ver tabla abajo)
 - **Header EC de producción** (Menú · Últimas noticias · logo · Iniciar sesión · Suscríbete)
 
