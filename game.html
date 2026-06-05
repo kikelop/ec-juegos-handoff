@@ -160,18 +160,28 @@
         slot.scrollIntoView({ behavior: 'smooth', block: 'center' });
       }
 
-      /* El check solo marca: la card no se bloquea, se puede volver a entrar */
-      function showBadge() {
-        if (retoCard.querySelector('.game-card__badge')) return;
-        var badge = document.createElement('span');
-        badge.className = 'game-card__badge';
-        badge.setAttribute('aria-hidden', 'true');
-        badge.innerHTML = '<svg width="16" height="14" viewBox="0 0 16 14"><path d="M1.5 7.5L6 12L14.5 1.5" stroke="#fff" stroke-width="3" fill="none"/></svg>';
-        retoCard.prepend(badge);
+      /* Completado dentro: badge + caption, card desactivada y sin botón.
+         Fuera (landing) solo se pinta el check y la card sigue navegable. */
+      function markDone() {
+        if (!retoCard.querySelector('.game-card__badge')) {
+          var badge = document.createElement('span');
+          badge.className = 'game-card__badge';
+          badge.setAttribute('aria-hidden', 'true');
+          badge.innerHTML = '<svg width="16" height="14" viewBox="0 0 16 14"><path d="M1.5 7.5L6 12L14.5 1.5" stroke="#fff" stroke-width="3" fill="none"/></svg>';
+          retoCard.prepend(badge);
+        }
+        retoCard.classList.add('mode-card--done');
+        if (cta) { cta.remove(); cta = null; }
+        if (!retoCard.querySelector('.mode-card__status')) {
+          var status = document.createElement('p');
+          status.className = 'mode-card__status';
+          status.textContent = 'Reto completado';
+          retoCard.querySelector('.mode-card__inner').appendChild(status);
+        }
       }
 
       if (game.reto) {
-        if (state.done[slug]) showBadge();
+        if (state.done[slug]) markDone();
 
         /* Toda la card es clickable (el CTA burbujea al mismo handler) */
         retoCard.addEventListener('click', function () {
@@ -183,7 +193,7 @@
           slot.hidden = true;
           state.done[slug] = true;
           localStorage.setItem(KEY, JSON.stringify(state));
-          showBadge();
+          markDone();
         });
       }
 

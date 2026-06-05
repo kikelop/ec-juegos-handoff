@@ -530,6 +530,23 @@ img { display: block; }
   align-items: center;
   gap: 8px;
 }
+
+/* Reto completado (interior): card desactivada, sin botón, caption de estado */
+.mode-card--done {
+  pointer-events: none;
+  cursor: default;
+}
+.mode-card--done .mode-card__icon,
+.mode-card--done .mode-card__title,
+.mode-card--done .mode-card__copy { opacity: 0.45; }
+.mode-card__status {
+  margin-top: 8px;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 16.5px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
 .mode-card__icon { margin-bottom: 8px; }
 .mode-card__title {
   font-family: var(--font-serif);
