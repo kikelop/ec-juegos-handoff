@@ -414,10 +414,8 @@ img { display: block; }
 .game-card--rosa    { background: var(--card-rosa); }
 .game-card--oliva   { background: var(--card-oliva); }
 
-/* Completado: aspecto desactivado (el badge mantiene fuerza).
-   En la maqueta sigue siendo pulsable para des-marcar (toggle demo);
-   en producción sería no navegable (pointer-events: none + sin href). */
-.game-card--done .game-card__inner { opacity: 0.45; }
+/* Completado: solo aparece el check (badge + caption a plena fuerza).
+   La card NO se bloquea — se puede volver a entrar al juego. */
 
 /* Hover (solo desktop ≥1200 + puntero fino): la card se eleva, el contenido hace zoom.
    Ease tipo GSAP power4.out → cubic-bezier(0.22, 1, 0.36, 1) */
@@ -520,9 +518,6 @@ img { display: block; }
   font-size: 14px;
   line-height: 21px;
 }
-.mode-card--done .mode-card__icon,
-.mode-card--done .mode-card__copy { opacity: 0.45; }
-
 .btn-dark {
   margin-top: 16px;
   padding: 14px 28px;

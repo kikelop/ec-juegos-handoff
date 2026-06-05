@@ -65,7 +65,6 @@
             <h2 class="mode-card__title">Reto diario</h2>
             <p class="mode-card__copy" id="reto-copy">El mismo reto para todos los lectores. Suma 10 puntos.</p>
             <button class="btn-dark" id="reto-cta" type="button">Jugar el reto de hoy</button>
-            <p class="mode-card__countdown" id="reto-countdown" hidden></p>
           </article>
 
           <!-- Partida libre: dificultad inline (mismo patrón que el reto), no puntúa -->
@@ -140,12 +139,17 @@
           'El mismo reto para todos los lectores. Suma ' + level[1] + ' puntos.';
       }
 
+      /* ----- Estado persistido de retos (compartido con la landing) ----- */
+      var KEY = 'ecjuegos-retos';
+      var state;
+      try { state = JSON.parse(localStorage.getItem(KEY)) || {}; } catch (e) { state = {}; }
+      if (state.date !== new Date().toDateString()) state = { date: new Date().toDateString(), done: {} };
+
       /* ----- Interacciones (demo) ----- */
       var slot = document.getElementById('game-slot');
       var slotLabel = document.getElementById('game-slot-label');
       var simulate = document.getElementById('simulate-done');
       var cta = document.getElementById('reto-cta');
-      var countdown = document.getElementById('reto-countdown');
 
       function showSlot(text, isReto) {
         slot.hidden = false;
@@ -154,31 +158,29 @@
         slot.scrollIntoView({ behavior: 'smooth', block: 'center' });
       }
 
+      /* El check solo marca: la card no se bloquea, se puede volver a entrar */
+      function showBadge() {
+        if (retoCard.querySelector('.game-card__badge')) return;
+        var badge = document.createElement('span');
+        badge.className = 'game-card__badge';
+        badge.setAttribute('aria-hidden', 'true');
+        badge.innerHTML = '<svg width="16" height="14" viewBox="0 0 16 14"><path d="M1.5 7.5L6 12L14.5 1.5" stroke="#fff" stroke-width="3" fill="none"/></svg>';
+        retoCard.prepend(badge);
+      }
+
       if (game.reto) {
+        if (state.done[slug]) showBadge();
+
         cta.addEventListener('click', function () {
           showSlot(game.name + ' · Reto diario · ' + level[0], true);
         });
 
-        /* Completado → card desactivada + countdown al siguiente reto */
+        /* Completar el reto dentro del juego → check aquí y en la landing */
         simulate.addEventListener('click', function () {
           slot.hidden = true;
-          retoCard.classList.add('mode-card--done');
-          var badge = document.createElement('span');
-          badge.className = 'game-card__badge';
-          badge.setAttribute('aria-hidden', 'true');
-          badge.innerHTML = '<svg width="16" height="14" viewBox="0 0 16 14"><path d="M1.5 7.5L6 12L14.5 1.5" stroke="#fff" stroke-width="3" fill="none"/></svg>';
-          retoCard.prepend(badge);
-          cta.hidden = true;
-          countdown.hidden = false;
-          tick();
-          setInterval(tick, 30000);
-          function tick() {
-            var now = new Date();
-            var mid = new Date(now); mid.setHours(24, 0, 0, 0);
-            var mins = Math.floor((mid - now) / 60000);
-            countdown.innerHTML = 'Completado · +' + level[1] + ' puntos<br>El próximo reto, en <strong>' +
-              Math.floor(mins / 60) + ' h ' + (mins % 60) + ' min</strong>';
-          }
+          state.done[slug] = true;
+          localStorage.setItem(KEY, JSON.stringify(state));
+          showBadge();
         });
       }
 
