@@ -419,9 +419,9 @@ img { display: block; }
    en producción sería no navegable (pointer-events: none + sin href). */
 .game-card--done .game-card__inner { opacity: 0.45; }
 
-/* Hover (solo puntero fino): la card se eleva, el contenido hace zoom.
+/* Hover (solo desktop ≥1200 + puntero fino): la card se eleva, el contenido hace zoom.
    Ease tipo GSAP power4.out → cubic-bezier(0.22, 1, 0.36, 1) */
-@media (hover: hover) and (pointer: fine) {
+@media (min-width: 1200px) and (hover: hover) and (pointer: fine) {
   .game-card {
     transition:
       transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
