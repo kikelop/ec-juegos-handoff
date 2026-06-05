@@ -81,10 +81,6 @@
           <div class="xw-toolbar">
             <div class="xw-toolbar__tools">
               <button class="xw-tool" type="button">
-                <svg width="16" height="14" viewBox="0 0 16 14" aria-hidden="true"><path d="M4 1L1 4l3 3M1 4h11M12 13l3-3-3-3M15 10H4" stroke="currentColor" stroke-width="1.8" fill="none"/></svg>
-                Sentido
-              </button>
-              <button class="xw-tool" type="button">
                 <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><rect x="1" y="1" width="14" height="14" rx="1.5" stroke="currentColor" stroke-width="1.8" fill="none"/><text x="8" y="12" text-anchor="middle" font-size="10" font-weight="700" fill="currentColor" font-family="Arial">A</text></svg>
                 Pista letra <span class="xw-tool__count">3</span>
               </button>
@@ -97,27 +93,14 @@
           </div>
         </div>
 
-        <!-- Listas de pistas: fila completa clicable, activa con acento, completadas tachadas -->
+        <!-- Pistas: toggle sincronizado con el sentido del tablero + una sola lista.
+             El toggle mantiene la celda seleccionada y cruza la dirección. -->
         <div class="xw-clues">
-          <section class="xw-clue-group">
-            <h2 class="xw-clue-group__title">Horizontales</h2>
-            <ol class="xw-clue-list" id="clues-h">
-              <li class="xw-clue xw-clue--done" data-clue="5"><span class="xw-clue__num">5</span><span class="xw-clue__text">Fruto de la vid con que se hace el vino</span><svg class="xw-clue__check" width="12" height="10" viewBox="0 0 12 10" aria-hidden="true"><path d="M1 5l3.5 3.5L11 1" stroke="currentColor" stroke-width="2" fill="none"/></svg></li>
-              <li class="xw-clue xw-clue--active" data-clue="6"><span class="xw-clue__num">6</span><span class="xw-clue__text">Felino de pelaje rayado</span></li>
-              <li class="xw-clue" data-clue="7"><span class="xw-clue__num">7</span><span class="xw-clue__text">Bolsa que se lleva colgada a la espalda</span></li>
-              <li class="xw-clue" data-clue="11"><span class="xw-clue__num">11</span><span class="xw-clue__text">Antiguo emperador de Rusia</span></li>
-              <li class="xw-clue" data-clue="12"><span class="xw-clue__num">12</span><span class="xw-clue__text">Bebida alcohólica elaborada con uva</span></li>
-            </ol>
-          </section>
-          <section class="xw-clue-group">
-            <h2 class="xw-clue-group__title">Verticales</h2>
-            <ol class="xw-clue-list" id="clues-v">
-              <li class="xw-clue" data-clue="1"><span class="xw-clue__num">1</span><span class="xw-clue__text">Pez grande de carne roja muy apreciado</span></li>
-              <li class="xw-clue" data-clue="2"><span class="xw-clue__num">2</span><span class="xw-clue__text">Figura o aspecto exterior de algo</span></li>
-              <li class="xw-clue" data-clue="3"><span class="xw-clue__num">3</span><span class="xw-clue__text">Hortaliza blanca de raíz comestible</span></li>
-              <li class="xw-clue" data-clue="4"><span class="xw-clue__num">4</span><span class="xw-clue__text">Fruta marrón por fuera y verde por dentro</span></li>
-            </ol>
-          </section>
+          <div class="xw-toggle" role="tablist" aria-label="Dirección de las pistas">
+            <button class="xw-toggle__btn" id="toggle-h" type="button" role="tab" aria-selected="true">Horizontales <span class="xw-toggle__count" id="count-h">1/5</span></button>
+            <button class="xw-toggle__btn" id="toggle-v" type="button" role="tab" aria-selected="false">Verticales <span class="xw-toggle__count" id="count-v">0/5</span></button>
+          </div>
+          <ol class="xw-clue-list" id="clue-list"></ol>
         </div>
 
       </div>
@@ -157,7 +140,7 @@
       var GRID = [
         [{n:1},'B','B','B','B',{n:2},'B','B'],
         [{},'B',{n:3},'B',{n:4,l:'Z',err:1},{},'B','B'],
-        [{n:5,l:'U',ok:1},{l:'V',ok:1},{l:'A',ok:1},'B',{n:6,ac:1},{aw:1},{aw:1},{aw:1}],
+        [{n:5,l:'U',ok:1},{l:'V',ok:1},{l:'A',ok:1},'B',{n:6},{},{},{}],
         [{},'B',{},'B',{},'B',{},'B'],
         ['B',{n:7},{},{n:8},{},{n:9},{},'B'],
         ['B',{},'B',{},'B',{},'B','B'],
@@ -165,39 +148,98 @@
         [{n:11},{},{},'B',{n:12},{},{},{}],
         ['B','B','B','B',{},'B',{},'B']
       ];
+      var CLUES = {
+        h: { 5: 'Fruto de la vid con que se hace el vino', 6: 'Felino de pelaje rayado', 7: 'Bolsa que se lleva colgada a la espalda', 11: 'Antiguo emperador de Rusia', 12: 'Bebida alcohólica elaborada con uva' },
+        v: { 1: 'Pez grande de carne roja muy apreciado', 2: 'Figura o aspecto exterior de algo', 3: 'Hortaliza blanca de raíz comestible', 4: 'Fruta marrón por fuera y verde por dentro', 12: 'Nota musical' }
+      };
+      var DONE = { h: { 5: true }, v: {} };
+      var sel = { r: 2, c: 4, dir: 'h' };   /* celda 6, horizontal */
+
+      /* ----- Render del tablero (una vez) ----- */
       var board = document.getElementById('board');
-      GRID.forEach(function (row) {
-        row.forEach(function (cell) {
+      var cellEls = [];
+      GRID.forEach(function (row, r) {
+        cellEls[r] = [];
+        row.forEach(function (cell, c) {
           var div = document.createElement('div');
           if (cell === 'B') { div.className = 'xw-cell xw-cell--black'; }
           else {
             div.className = 'xw-cell';
-            if (cell.aw) div.className += ' xw-cell--word';
-            if (cell.ac) div.className += ' xw-cell--active';
             if (cell.n) div.innerHTML += '<span class="xw-cell__num">' + cell.n + '</span>';
             if (cell.l) div.innerHTML += '<span class="xw-cell__letter' + (cell.ok ? ' xw-cell__letter--ok' : '') + (cell.err ? ' xw-cell__letter--err' : '') + '">' + cell.l + '</span>';
+            div.addEventListener('click', function () {
+              /* segunda pulsación en la misma celda → cruza la dirección */
+              if (sel.r === r && sel.c === c) sel.dir = sel.dir === 'h' ? 'v' : 'h';
+              else { sel.r = r; sel.c = c; }
+              render();
+            });
           }
           board.appendChild(div);
+          cellEls[r][c] = div;
         });
       });
 
-      /* ----- Pistas: fila completa clicable → activa + actualiza la barra ----- */
-      var clues = document.querySelectorAll('.xw-clue');
-      clues.forEach(function (clue) {
-        clue.addEventListener('click', function () {
-          clues.forEach(function (c) { c.classList.remove('xw-clue--active'); });
-          clue.classList.add('xw-clue--active');
-          var dir = clue.closest('ol').id === 'clues-h' ? 'horizontal' : 'vertical';
-          document.getElementById('cluebar-num').textContent = clue.dataset.clue + ' ' + dir;
-          document.getElementById('cluebar-text').textContent = clue.querySelector('.xw-clue__text').textContent;
-        });
-      });
+      function isWhite(r, c) { return r >= 0 && r < GRID.length && c >= 0 && c < GRID[0].length && GRID[r][c] !== 'B'; }
+      function wordCells(r, c, dir) {
+        var dr = dir === 'v' ? 1 : 0, dc = dir === 'h' ? 1 : 0;
+        while (isWhite(r - dr, c - dc)) { r -= dr; c -= dc; }
+        var cells = [];
+        while (isWhite(r, c)) { cells.push([r, c]); r += dr; c += dc; }
+        return cells;
+      }
+      function findNum(n) {
+        for (var r = 0; r < GRID.length; r++) for (var c = 0; c < GRID[0].length; c++)
+          if (GRID[r][c] !== 'B' && GRID[r][c].n === n) return [r, c];
+        return null;
+      }
+      function nums(dir) { return Object.keys(CLUES[dir]).map(Number).sort(function (a, b) { return a - b; }); }
 
-      /* ----- Barra de pista: ‹ › ciclan por todas las pistas ----- */
-      var all = Array.prototype.slice.call(clues);
+      /* ----- Render de selección, toggle y lista ----- */
+      var listEl = document.getElementById('clue-list');
+      function render() {
+        for (var r = 0; r < GRID.length; r++) for (var c = 0; c < GRID[0].length; c++)
+          if (cellEls[r][c]) cellEls[r][c].classList.remove('xw-cell--word', 'xw-cell--active');
+        var cells = wordCells(sel.r, sel.c, sel.dir);
+        cells.forEach(function (rc) { cellEls[rc[0]][rc[1]].classList.add('xw-cell--word'); });
+        cellEls[sel.r][sel.c].classList.add('xw-cell--active');
+
+        var start = cells[0];
+        var num = GRID[start[0]][start[1]].n || '·';
+        document.getElementById('cluebar-num').textContent = num + (sel.dir === 'h' ? ' horizontal' : ' vertical');
+        document.getElementById('cluebar-text').textContent = CLUES[sel.dir][num] || 'Definición de ejemplo (demo)';
+
+        document.getElementById('toggle-h').setAttribute('aria-selected', String(sel.dir === 'h'));
+        document.getElementById('toggle-v').setAttribute('aria-selected', String(sel.dir === 'v'));
+        document.getElementById('count-h').textContent = Object.keys(DONE.h).length + '/' + nums('h').length;
+        document.getElementById('count-v').textContent = Object.keys(DONE.v).length + '/' + nums('v').length;
+
+        listEl.innerHTML = '';
+        nums(sel.dir).forEach(function (n) {
+          var li = document.createElement('li');
+          var done = DONE[sel.dir][n];
+          li.className = 'xw-clue' + (done ? ' xw-clue--done' : '') + (n === num ? ' xw-clue--active' : '');
+          li.innerHTML = '<span class="xw-clue__num">' + n + '</span><span class="xw-clue__text">' + CLUES[sel.dir][n] + '</span>' +
+            (done ? '<svg class="xw-clue__check" width="12" height="10" viewBox="0 0 12 10" aria-hidden="true"><path d="M1 5l3.5 3.5L11 1" stroke="currentColor" stroke-width="2" fill="none"/></svg>' : '');
+          li.addEventListener('click', function () {
+            var rc = findNum(n);
+            if (rc) { sel.r = rc[0]; sel.c = rc[1]; render(); }
+          });
+          listEl.appendChild(li);
+        });
+      }
+      render();
+
+      /* ----- Toggle: mantiene la celda seleccionada, cruza la dirección ----- */
+      document.getElementById('toggle-h').addEventListener('click', function () { sel.dir = 'h'; render(); });
+      document.getElementById('toggle-v').addEventListener('click', function () { sel.dir = 'v'; render(); });
+
+      /* ----- ‹ › ciclan por las pistas de la dirección activa ----- */
       function move(step) {
-        var i = all.findIndex(function (c) { return c.classList.contains('xw-clue--active'); });
-        all[(i + step + all.length) % all.length].click();
+        var list = nums(sel.dir);
+        var start = wordCells(sel.r, sel.c, sel.dir)[0];
+        var i = list.indexOf(GRID[start[0]][start[1]].n);
+        var rc = findNum(list[(i + step + list.length) % list.length]);
+        if (rc) { sel.r = rc[0]; sel.c = rc[1]; render(); }
       }
       document.getElementById('clue-prev').addEventListener('click', function () { move(-1); });
       document.getElementById('clue-next').addEventListener('click', function () { move(1); });
