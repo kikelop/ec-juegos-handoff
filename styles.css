@@ -653,11 +653,11 @@ img { display: block; }
 .xw-chip--time:hover { border-color: var(--text-primary); }
 .xw-chip--time[aria-pressed="true"] { color: var(--border-subtle); }
 
-/* Layout tablero + pistas: las pistas llenan la columna derecha */
+/* Layout tablero + pistas dentro de la columna de 760 (doble roba al lado) */
 .xw-layout {
   display: grid;
-  grid-template-columns: 560px 1fr;
-  gap: 32px;
+  grid-template-columns: 432px 1fr;
+  gap: 24px;
   align-items: start;
 }
 
@@ -711,9 +711,9 @@ img { display: block; }
 .xw-cell--active { background: var(--cta-yellow); }    /* celda activa: amarillo EC */
 .xw-cell__num {
   position: absolute;
-  top: 3px;
-  left: 5px;
-  font-size: 11px;
+  top: 2px;
+  left: 4px;
+  font-size: 10px;
   color: var(--text-secondary);
 }
 .xw-cell__letter {
@@ -723,7 +723,7 @@ img { display: block; }
   height: 100%;
   font-family: var(--font-sans);
   font-weight: 700;
-  font-size: 30px;
+  font-size: 24px;
   color: var(--text-primary);
 }
 .xw-cell__letter--ok { color: #177245; }               /* verificada */
@@ -763,8 +763,18 @@ img { display: block; }
   font-weight: 700;
   text-align: center;
 }
-.xw-verify { margin-top: 0; padding: 12px 24px; white-space: nowrap; }
 .xw-tool { white-space: nowrap; }
+.xw-demo {
+  padding: 0;
+  border: 0;
+  background: none;
+  font-family: var(--font-sans);
+  font-size: 12px;
+  color: var(--border-subtle);
+  cursor: pointer;
+  white-space: nowrap;
+}
+.xw-demo:hover { color: var(--text-secondary); }
 
 /* Toggle horizontales/verticales — sincronizado con el sentido del tablero */
 .xw-toggle {
@@ -780,8 +790,8 @@ img { display: block; }
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
-  padding: 10px 16px;
+  gap: 6px;
+  padding: 9px 8px;
   border: 0;
   border-radius: 2px;
   background: transparent;
@@ -896,7 +906,7 @@ img { display: block; }
 /* Responsive: pilas en tablet/mobile */
 @media (max-width: 1199px) {
   .xw-layout { grid-template-columns: 1fr; }
-  .xw-board { max-width: 560px; }
+  .xw-board, .xw-cluebar, .xw-toolbar { max-width: 432px; }
 }
 @media (max-width: 599px) {
   .xw-stats { flex-wrap: wrap; }

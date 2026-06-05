@@ -37,7 +37,15 @@
 
   <div class="page">
 
-    <div class="hero-block">
+    <!-- ═══════════ PUBLICIDAD · BILLBOARD ═══════════ -->
+    <div class="ad ad--billboard">
+      <div class="ad__slot"></div>
+      <span class="ad__label">publicidad</span>
+    </div>
+
+    <div class="games-area">
+
+      <section class="games-section games-section--retos">
 
       <a class="back-btn" href="index.html">
         <svg width="14" height="12" viewBox="0 0 14 12" aria-hidden="true"><path d="M6 1L1 6L6 11M1 6H13" stroke="currentColor" stroke-width="2" fill="none"/></svg>
@@ -76,8 +84,10 @@
           <!-- Tablero -->
           <div class="xw-board" id="board" role="grid" aria-label="Tablero del crucigrama"></div>
 
-          <!-- Toolbar pegada al tablero: utilidades a la izquierda, primario a la derecha.
-               Salir desaparece: lo absorbe «Volver a Juegos» (el progreso se guarda). -->
+          <!-- Toolbar pegada al tablero: solo las pistas.
+               Sin «Cambiar sentido» (toggle / segunda pulsación), sin «Salir»
+               (Volver a Juegos) y sin «Verificar todo»: el tablero se
+               autovalida al completarse. -->
           <div class="xw-toolbar">
             <div class="xw-toolbar__tools">
               <button class="xw-tool" type="button">
@@ -89,7 +99,7 @@
                 Pista palabra <span class="xw-tool__count">2</span>
               </button>
             </div>
-            <button class="btn-dark xw-verify" id="verify" type="button">Verificar todo</button>
+            <button class="xw-demo" id="simulate-complete" type="button">Simular tablero completo (demo)</button>
           </div>
         </div>
 
@@ -103,6 +113,16 @@
           <ol class="xw-clue-list" id="clue-list"></ol>
         </div>
 
+      </div>
+
+      </section>
+
+      <!-- ═══════════ PUBLICIDAD · DOBLE ROBA ═══════════ -->
+      <div class="ad ad--dobleroba">
+        <div class="ad__inner">
+          <div class="ad__slot"></div>
+          <span class="ad__label">publicidad</span>
+        </div>
       </div>
 
     </div>
@@ -252,9 +272,10 @@
         document.getElementById('time-value').textContent = hidden ? '03:20' : '··:··';
       });
 
-      /* ----- Verificar todo → modal de reto completado (demo) ----- */
+      /* ----- Autovalidación al completar: el motor real dispara el modal al
+             rellenar la última celda correcta. Aquí, botón de demo. ----- */
       var modal = document.getElementById('modal');
-      document.getElementById('verify').addEventListener('click', function () { modal.hidden = false; });
+      document.getElementById('simulate-complete').addEventListener('click', function () { modal.hidden = false; });
       modal.addEventListener('click', function (e) { if (e.target === modal) modal.hidden = true; });
     })();
   </script>
