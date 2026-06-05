@@ -471,13 +471,13 @@ img { display: block; }
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  margin-bottom: 24px;
-  font-size: 14px;
+  margin-bottom: 40px;
+  font-size: 16px;
   font-weight: 500;
-  color: var(--text-secondary);
-  transition: color 0.2s ease;
+  color: var(--text-primary);
+  transition: opacity 0.2s ease;
 }
-.back-btn:hover { color: var(--text-primary); }
+.back-btn:hover { opacity: 0.7; }
 
 .mode-row {
   display: grid;
