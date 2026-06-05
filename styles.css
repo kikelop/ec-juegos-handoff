@@ -487,11 +487,7 @@ img { display: block; }
   grid-template-columns: 1fr 1fr;
   gap: 24px;
 }
-.mode-row--solo {
-  grid-template-columns: 1fr;
-  max-width: 368px;
-  margin: 0 auto;
-}
+.mode-row--solo { grid-template-columns: 1fr; }   /* card única a todo el ancho */
 
 .mode-card {
   position: relative;
