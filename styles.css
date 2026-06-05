@@ -458,14 +458,6 @@ img { display: block; }
    INTERIOR DE JUEGO (game.html) · selección de modo
    ========================================================================== */
 
-.game-breadcrumb { margin-bottom: 16px; }
-.game-breadcrumb a {
-  font-size: 14px;
-  font-weight: 500;
-  color: var(--text-secondary);
-}
-.game-breadcrumb a:hover { color: var(--text-primary); }
-
 .mode-row {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -488,7 +480,10 @@ img { display: block; }
   border-radius: 2px;
   color: var(--ink-card);
 }
-.mode-card--libre { background: #F5F5F5; }
+.mode-card--libre {
+  background: var(--bg-canvas);
+  border: 1px solid var(--border-subtle);
+}
 .mode-card__icon { margin-bottom: 8px; }
 .mode-card__title {
   font-family: var(--font-serif);
@@ -503,23 +498,13 @@ img { display: block; }
   line-height: 21px;
   opacity: 0.7;
 }
-.mode-card__meta {
-  margin-top: 4px;
-  font-size: 13px;
-  font-weight: 700;
-  line-height: 16.5px;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-}
-.mode-card__points { white-space: nowrap; }
 .mode-card__countdown {
   margin-top: 12px;
   font-size: 14px;
   line-height: 21px;
 }
 .mode-card--done .mode-card__icon,
-.mode-card--done .mode-card__copy,
-.mode-card--done .mode-card__meta { opacity: 0.45; }
+.mode-card--done .mode-card__copy { opacity: 0.45; }
 
 .btn-dark {
   margin-top: 16px;

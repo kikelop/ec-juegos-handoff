@@ -49,7 +49,6 @@
     <div class="games-area">
 
       <section class="games-section games-section--retos" aria-labelledby="game-title">
-        <nav class="game-breadcrumb"><a href="index.html">← Juegos</a></nav>
         <div class="balcon balcon--hero">
           <h1 class="balcon__title" id="game-title">Sudoku</h1>
         </div>
@@ -60,8 +59,7 @@
           <article class="mode-card mode-card--reto" id="reto-card">
             <span class="mode-card__icon"><img src="svg/reto-diario.svg" width="87" height="87" alt=""></span>
             <h2 class="mode-card__title">Reto diario</h2>
-            <p class="mode-card__copy">El mismo puzzle para todos los lectores. Compara tu resultado.</p>
-            <p class="mode-card__meta" id="reto-meta">Reto del jueves · Medio · <span class="mode-card__points">+10 puntos</span></p>
+            <p class="mode-card__copy" id="reto-copy">El mismo reto para todos los lectores. Suma 10 puntos.</p>
             <button class="btn-dark" id="reto-cta" type="button">Jugar el reto de hoy</button>
             <p class="mode-card__countdown" id="reto-countdown" hidden></p>
           </article>
@@ -70,20 +68,11 @@
           <article class="mode-card mode-card--libre" id="libre-card">
             <span class="mode-card__icon"><img src="svg/partida-libre.svg" width="87" height="87" alt=""></span>
             <h2 class="mode-card__title">Partida libre</h2>
-            <p class="mode-card__copy">Juega tantas veces como quieras, a tu ritmo. No puntúa.</p>
+            <p class="mode-card__copy">Juega tantas veces como quieras. No sumas puntos.</p>
             <div class="diff-row" role="group" aria-label="Elige dificultad" id="diff-row">
-              <button class="diff-btn" type="button" data-diff="Fácil" aria-pressed="false">
-                <svg width="18" height="18" viewBox="0 0 20 20" aria-hidden="true"><rect x="1" y="13" width="5" height="6" fill="currentColor"/><rect x="7.5" y="8" width="5" height="11" fill="currentColor" opacity=".25"/><rect x="14" y="3" width="5" height="16" fill="currentColor" opacity=".25"/></svg>
-                Fácil
-              </button>
-              <button class="diff-btn" type="button" data-diff="Media" aria-pressed="false">
-                <svg width="18" height="18" viewBox="0 0 20 20" aria-hidden="true"><rect x="1" y="13" width="5" height="6" fill="currentColor"/><rect x="7.5" y="8" width="5" height="11" fill="currentColor"/><rect x="14" y="3" width="5" height="16" fill="currentColor" opacity=".25"/></svg>
-                Media
-              </button>
-              <button class="diff-btn" type="button" data-diff="Difícil" aria-pressed="false">
-                <svg width="18" height="18" viewBox="0 0 20 20" aria-hidden="true"><rect x="1" y="13" width="5" height="6" fill="currentColor"/><rect x="7.5" y="8" width="5" height="11" fill="currentColor"/><rect x="14" y="3" width="5" height="16" fill="currentColor"/></svg>
-                Difícil
-              </button>
+              <button class="diff-btn" type="button" data-diff="Fácil" aria-pressed="false">Fácil</button>
+              <button class="diff-btn" type="button" data-diff="Medio" aria-pressed="false">Medio</button>
+              <button class="diff-btn" type="button" data-diff="Difícil" aria-pressed="false">Difícil</button>
             </div>
           </article>
 
@@ -140,13 +129,11 @@
       }
 
       /* ----- Dificultad del reto: fija, rota por día (lun→dom sube) ----- */
-      var DAYS = ['domingo', 'lunes', 'martes', 'miércoles', 'jueves', 'viernes', 'sábado'];
-      var LEVELS = { 0: ['Difícil', 15], 1: ['Fácil', 5], 2: ['Fácil', 5], 3: ['Media', 10], 4: ['Media', 10], 5: ['Media', 10], 6: ['Difícil', 15] };
-      var d = new Date();
-      var level = LEVELS[d.getDay()];
+      var LEVELS = { 0: ['Difícil', 15], 1: ['Fácil', 5], 2: ['Fácil', 5], 3: ['Medio', 10], 4: ['Medio', 10], 5: ['Medio', 10], 6: ['Difícil', 15] };
+      var level = LEVELS[new Date().getDay()];
       if (game.reto) {
-        document.getElementById('reto-meta').innerHTML =
-          'Reto del ' + DAYS[d.getDay()] + ' · ' + level[0] + ' · <span class="mode-card__points">+' + level[1] + ' puntos</span>';
+        document.getElementById('reto-copy').textContent =
+          'El mismo reto para todos los lectores. Suma ' + level[1] + ' puntos.';
       }
 
       /* ----- Interacciones (demo) ----- */
