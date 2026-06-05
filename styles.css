@@ -538,7 +538,8 @@ img { display: block; }
 }
 .mode-card--done .mode-card__icon,
 .mode-card--done .mode-card__title,
-.mode-card--done .mode-card__copy { opacity: 0.45; }
+.mode-card--done .mode-card__copy,
+.mode-card--done .mode-card__status { opacity: 0.45; }
 .mode-card__status {
   margin-top: 8px;
   font-size: 13px;
