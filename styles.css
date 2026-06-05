@@ -435,15 +435,6 @@ img { display: block; }
       0 2px 6px rgba(15, 33, 36, 0.04);
   }
   .game-card:hover .game-card__inner { transform: scale(1.035); }
-  .game-card:active {
-    transform: translateY(-1px);
-    transition-duration: 0.15s;
-  }
-  .game-card:active .game-card__inner {
-    transform: scale(1.01);
-    transition-duration: 0.15s;
-  }
-
   /* La card de Reto diario del interior hereda el mismo efecto */
   .mode-card--reto {
     transition:
@@ -460,10 +451,6 @@ img { display: block; }
       0 2px 6px rgba(15, 33, 36, 0.04);
   }
   .mode-card--reto:hover .mode-card__inner { transform: scale(1.035); }
-  .mode-card--reto:active {
-    transform: translateY(-1px);
-    transition-duration: 0.15s;
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {
