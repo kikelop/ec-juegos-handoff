@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Crucigrama · Juegos · El Confidencial</title>
+  <meta name="description" content="Prototipo de mejoras UX de la pantalla de juego del crucigrama.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- ═══════════ HEADER EC ═══════════ -->
+  <header class="site-header">
+    <div class="site-header__inner">
+      <div class="site-header__left">
+        <button class="site-header__menu" type="button" aria-label="Abrir menú">
+          <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><g fill="#121212"><rect width="4" height="4"/><rect x="6" width="4" height="4"/><rect x="12" width="4" height="4"/><rect y="6" width="4" height="4"/><rect x="6" y="6" width="4" height="4"/><rect x="12" y="6" width="4" height="4"/><rect y="12" width="4" height="4"/><rect x="6" y="12" width="4" height="4"/><rect x="12" y="12" width="4" height="4"/></g></svg>
+          <span>Menú</span>
+        </button>
+        <a class="site-header__breaking" href="#">
+          <span class="site-header__breaking-dot" aria-hidden="true"></span>
+          <span>Últimas noticias</span>
+        </a>
+      </div>
+      <a class="site-header__logo" href="https://www.elconfidencial.com" aria-label="El Confidencial">
+        <img src="svg/logo-ec.svg" width="206" height="18" alt="El Confidencial · 25 años">
+      </a>
+      <div class="site-header__right">
+        <a class="site-header__login" href="#">Iniciar sesión</a>
+        <a class="site-header__cta" href="#">Suscríbete</a>
+      </div>
+    </div>
+  </header>
+
+  <div class="page">
+
+    <div class="hero-block">
+
+      <a class="back-btn" href="index.html">
+        <svg width="14" height="12" viewBox="0 0 14 12" aria-hidden="true"><path d="M6 1L1 6L6 11M1 6H13" stroke="currentColor" stroke-width="2" fill="none"/></svg>
+        Volver a Juegos
+      </a>
+
+      <!-- Título: el modo es contexto, va con el título — no es una métrica -->
+      <div class="balcon">
+        <h1 class="balcon__title">Crucigrama <span class="xw-mode">Reto diario</span></h1>
+      </div>
+
+      <!-- Stats compactas: chips, cronómetro ocultable y sin protagonismo -->
+      <div class="xw-stats">
+        <button class="xw-chip xw-chip--time" id="time-chip" type="button" aria-pressed="false" title="Ocultar el cronómetro">
+          <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><circle cx="7" cy="8" r="5" stroke="currentColor" stroke-width="1.6" fill="none"/><path d="M7 5.5V8l1.8 1.2M5.5 1h3" stroke="currentColor" stroke-width="1.6" fill="none"/></svg>
+          <span id="time-value">03:20</span>
+        </button>
+        <span class="xw-chip"><strong>1</strong> error</span>
+        <span class="xw-chip"><strong>0</strong> pistas</span>
+      </div>
+
+      <div class="xw-layout">
+
+        <div class="xw-main">
+          <!-- Pista activa con navegación ‹ › -->
+          <div class="xw-cluebar">
+            <button class="xw-cluebar__nav" id="clue-prev" type="button" aria-label="Pista anterior">
+              <svg width="8" height="14" viewBox="0 0 8 14" aria-hidden="true"><path d="M7 1L1 7L7 13" stroke="currentColor" stroke-width="2" fill="none"/></svg>
+            </button>
+            <p class="xw-cluebar__text"><strong id="cluebar-num">6 horizontal</strong><span id="cluebar-text">Felino de pelaje rayado</span></p>
+            <button class="xw-cluebar__nav" id="clue-next" type="button" aria-label="Pista siguiente">
+              <svg width="8" height="14" viewBox="0 0 8 14" aria-hidden="true"><path d="M1 1L7 7L1 13" stroke="currentColor" stroke-width="2" fill="none"/></svg>
+            </button>
+          </div>
+
+          <!-- Tablero -->
+          <div class="xw-board" id="board" role="grid" aria-label="Tablero del crucigrama"></div>
+
+          <!-- Toolbar pegada al tablero: utilidades a la izquierda, primario a la derecha.
+               Salir desaparece: lo absorbe «Volver a Juegos» (el progreso se guarda). -->
+          <div class="xw-toolbar">
+            <div class="xw-toolbar__tools">
+              <button class="xw-tool" type="button">
+                <svg width="16" height="14" viewBox="0 0 16 14" aria-hidden="true"><path d="M4 1L1 4l3 3M1 4h11M12 13l3-3-3-3M15 10H4" stroke="currentColor" stroke-width="1.8" fill="none"/></svg>
+                Sentido
+              </button>
+              <button class="xw-tool" type="button">
+                <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><rect x="1" y="1" width="14" height="14" rx="1.5" stroke="currentColor" stroke-width="1.8" fill="none"/><text x="8" y="12" text-anchor="middle" font-size="10" font-weight="700" fill="currentColor" font-family="Arial">A</text></svg>
+                Pista letra <span class="xw-tool__count">3</span>
+              </button>
+              <button class="xw-tool" type="button">
+                <svg width="20" height="16" viewBox="0 0 20 16" aria-hidden="true"><rect x="1" y="4" width="5.2" height="8" rx="1" stroke="currentColor" stroke-width="1.6" fill="none"/><rect x="7.4" y="4" width="5.2" height="8" rx="1" stroke="currentColor" stroke-width="1.6" fill="none"/><rect x="13.8" y="4" width="5.2" height="8" rx="1" stroke="currentColor" stroke-width="1.6" fill="none"/></svg>
+                Pista palabra <span class="xw-tool__count">2</span>
+              </button>
+            </div>
+            <button class="btn-dark xw-verify" id="verify" type="button">Verificar todo</button>
+          </div>
+        </div>
+
+        <!-- Listas de pistas: fila completa clicable, activa con acento, completadas tachadas -->
+        <div class="xw-clues">
+          <section class="xw-clue-group">
+            <h2 class="xw-clue-group__title">Horizontales</h2>
+            <ol class="xw-clue-list" id="clues-h">
+              <li class="xw-clue xw-clue--done" data-clue="5"><span class="xw-clue__num">5</span><span class="xw-clue__text">Fruto de la vid con que se hace el vino</span><svg class="xw-clue__check" width="12" height="10" viewBox="0 0 12 10" aria-hidden="true"><path d="M1 5l3.5 3.5L11 1" stroke="currentColor" stroke-width="2" fill="none"/></svg></li>
+              <li class="xw-clue xw-clue--active" data-clue="6"><span class="xw-clue__num">6</span><span class="xw-clue__text">Felino de pelaje rayado</span></li>
+              <li class="xw-clue" data-clue="7"><span class="xw-clue__num">7</span><span class="xw-clue__text">Bolsa que se lleva colgada a la espalda</span></li>
+              <li class="xw-clue" data-clue="11"><span class="xw-clue__num">11</span><span class="xw-clue__text">Antiguo emperador de Rusia</span></li>
+              <li class="xw-clue" data-clue="12"><span class="xw-clue__num">12</span><span class="xw-clue__text">Bebida alcohólica elaborada con uva</span></li>
+            </ol>
+          </section>
+          <section class="xw-clue-group">
+            <h2 class="xw-clue-group__title">Verticales</h2>
+            <ol class="xw-clue-list" id="clues-v">
+              <li class="xw-clue" data-clue="1"><span class="xw-clue__num">1</span><span class="xw-clue__text">Pez grande de carne roja muy apreciado</span></li>
+              <li class="xw-clue" data-clue="2"><span class="xw-clue__num">2</span><span class="xw-clue__text">Figura o aspecto exterior de algo</span></li>
+              <li class="xw-clue" data-clue="3"><span class="xw-clue__num">3</span><span class="xw-clue__text">Hortaliza blanca de raíz comestible</span></li>
+              <li class="xw-clue" data-clue="4"><span class="xw-clue__num">4</span><span class="xw-clue__text">Fruta marrón por fuera y verde por dentro</span></li>
+            </ol>
+          </section>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- ═══════════ FOOTER ═══════════ -->
+  <footer class="site-footer">
+    <p>¿Necesitas ayuda? <a href="mailto:ayuda@elconfidencial.com">Escríbenos a ayuda@elconfidencial.com</a> o llámanos a <a href="tel:+34910781090">91 078 10 90</a></p>
+  </footer>
+
+  <!-- ═══════════ MODAL · RETO COMPLETADO (capitaliza la capa de retención) ═══════════ -->
+  <div class="xw-modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" hidden>
+    <div class="xw-modal__panel">
+      <span class="game-card__badge xw-modal__badge" aria-hidden="true"><svg width="16" height="14" viewBox="0 0 16 14"><path d="M1.5 7.5L6 12L14.5 1.5" stroke="#fff" stroke-width="3" fill="none"/></svg></span>
+      <h2 class="xw-modal__title" id="modal-title">¡Reto completado!</h2>
+      <p class="xw-modal__points">+10 puntos</p>
+      <div class="xw-modal__stats">
+        <div><strong>03:20</strong><span>Tu tiempo</span></div>
+        <div><strong>1</strong><span>Error</span></div>
+        <div><strong>0</strong><span>Pistas</span></div>
+      </div>
+      <p class="xw-modal__sub">Te quedan 3 retos hoy para llevarte 10 puntos extra.</p>
+      <div class="xw-modal__actions">
+        <a class="btn-dark" href="index.html">Siguiente reto</a>
+        <button class="xw-tool" type="button" onclick="navigator.clipboard.writeText('EC Crucigrama · Reto diario · 03:20 · elconfidencial.com/juegos').then(()=>{this.textContent='Copiado ✓'})">Compartir</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      /* ----- Tablero demo: B negro · n número · l letra
+             ok verificada · err errónea · aw palabra activa · ac celda activa ----- */
+      var GRID = [
+        [{n:1},'B','B','B','B',{n:2},'B','B'],
+        [{},'B',{n:3},'B',{n:4,l:'Z',err:1},{},'B','B'],
+        [{n:5,l:'U',ok:1},{l:'V',ok:1},{l:'A',ok:1},'B',{n:6,ac:1},{aw:1},{aw:1},{aw:1}],
+        [{},'B',{},'B',{},'B',{},'B'],
+        ['B',{n:7},{},{n:8},{},{n:9},{},'B'],
+        ['B',{},'B',{},'B',{},'B','B'],
+        ['B',{},'B',{},'B',{},'B',{n:10}],
+        [{n:11},{},{},'B',{n:12},{},{},{}],
+        ['B','B','B','B',{},'B',{},'B']
+      ];
+      var board = document.getElementById('board');
+      GRID.forEach(function (row) {
+        row.forEach(function (cell) {
+          var div = document.createElement('div');
+          if (cell === 'B') { div.className = 'xw-cell xw-cell--black'; }
+          else {
+            div.className = 'xw-cell';
+            if (cell.aw) div.className += ' xw-cell--word';
+            if (cell.ac) div.className += ' xw-cell--active';
+            if (cell.n) div.innerHTML += '<span class="xw-cell__num">' + cell.n + '</span>';
+            if (cell.l) div.innerHTML += '<span class="xw-cell__letter' + (cell.ok ? ' xw-cell__letter--ok' : '') + (cell.err ? ' xw-cell__letter--err' : '') + '">' + cell.l + '</span>';
+          }
+          board.appendChild(div);
+        });
+      });
+
+      /* ----- Pistas: fila completa clicable → activa + actualiza la barra ----- */
+      var clues = document.querySelectorAll('.xw-clue');
+      clues.forEach(function (clue) {
+        clue.addEventListener('click', function () {
+          clues.forEach(function (c) { c.classList.remove('xw-clue--active'); });
+          clue.classList.add('xw-clue--active');
+          var dir = clue.closest('ol').id === 'clues-h' ? 'horizontal' : 'vertical';
+          document.getElementById('cluebar-num').textContent = clue.dataset.clue + ' ' + dir;
+          document.getElementById('cluebar-text').textContent = clue.querySelector('.xw-clue__text').textContent;
+        });
+      });
+
+      /* ----- Barra de pista: ‹ › ciclan por todas las pistas ----- */
+      var all = Array.prototype.slice.call(clues);
+      function move(step) {
+        var i = all.findIndex(function (c) { return c.classList.contains('xw-clue--active'); });
+        all[(i + step + all.length) % all.length].click();
+      }
+      document.getElementById('clue-prev').addEventListener('click', function () { move(-1); });
+      document.getElementById('clue-next').addEventListener('click', function () { move(1); });
+
+      /* ----- Cronómetro ocultable ----- */
+      var timeChip = document.getElementById('time-chip');
+      timeChip.addEventListener('click', function () {
+        var hidden = timeChip.getAttribute('aria-pressed') === 'true';
+        timeChip.setAttribute('aria-pressed', String(!hidden));
+        document.getElementById('time-value').textContent = hidden ? '03:20' : '··:··';
+      });
+
+      /* ----- Verificar todo → modal de reto completado (demo) ----- */
+      var modal = document.getElementById('modal');
+      document.getElementById('verify').addEventListener('click', function () { modal.hidden = false; });
+      modal.addEventListener('click', function (e) { if (e.target === modal) modal.hidden = true; });
+    })();
+  </script>
+
+</body>
+</html>

@@ -613,6 +613,261 @@ img { display: block; }
 
 
 /* ==========================================================================
+   CRUCIGRAMA · pantalla de juego (prototipo de mejoras UX)
+   ========================================================================== */
+
+.xw-mode {
+  display: inline-block;
+  vertical-align: 3px;
+  margin-left: 10px;
+  padding: 4px 10px;
+  background: var(--card-acero);
+  border-radius: 2px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--ink-card);
+}
+
+/* Stats compactas */
+.xw-stats {
+  display: flex;
+  gap: 8px;
+  margin: 16px 0 24px;
+}
+.xw-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border: 1px solid var(--border-subtle);
+  border-radius: 2px;
+  background: var(--bg-canvas);
+  font-family: var(--font-sans);
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+.xw-chip strong { color: var(--text-primary); font-weight: 700; }
+.xw-chip--time { cursor: pointer; font: inherit; font-size: 13px; }
+.xw-chip--time:hover { border-color: var(--text-primary); }
+.xw-chip--time[aria-pressed="true"] { color: var(--border-subtle); }
+
+/* Layout tablero + pistas: las pistas llenan la columna derecha */
+.xw-layout {
+  display: grid;
+  grid-template-columns: 560px 1fr;
+  gap: 32px;
+  align-items: start;
+}
+
+/* Barra de pista activa con navegación */
+.xw-cluebar {
+  display: flex;
+  align-items: stretch;
+  margin-bottom: 16px;
+  background: #F4F6F7;
+  border-left: 3px solid #1F6CA8;
+}
+.xw-cluebar__nav {
+  display: flex;
+  align-items: center;
+  padding: 0 14px;
+  border: 0;
+  background: none;
+  color: var(--text-primary);
+  cursor: pointer;
+}
+.xw-cluebar__nav:hover { background: #E9EDEF; }
+.xw-cluebar__text {
+  flex: 1;
+  padding: 12px 4px;
+  font-size: 15px;
+  line-height: 21px;
+}
+.xw-cluebar__text strong {
+  margin-right: 10px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #1F6CA8;
+}
+
+/* Tablero */
+.xw-board {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  border: 2px solid var(--text-primary);
+}
+.xw-cell {
+  position: relative;
+  aspect-ratio: 1;
+  background: var(--bg-canvas);
+  border: 0.5px solid #C8CDD1;
+}
+.xw-cell--black { background: var(--text-primary); border-color: var(--text-primary); }
+.xw-cell--word { background: #E4ECF0; }                /* palabra activa: acero suave */
+.xw-cell--active {
+  background: var(--card-teal);                        /* celda activa: teal pastel */
+  box-shadow: inset 0 0 0 2px #1F6CA8;
+}
+.xw-cell__num {
+  position: absolute;
+  top: 3px;
+  left: 5px;
+  font-size: 11px;
+  color: var(--text-secondary);
+}
+.xw-cell__letter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: 30px;
+  color: var(--text-primary);
+}
+.xw-cell__letter--ok { color: #177245; }               /* verificada */
+.xw-cell__letter--err { color: #C0392B; text-decoration: line-through; }
+
+/* Toolbar pegada al tablero */
+.xw-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 16px;
+}
+.xw-toolbar__tools { display: flex; gap: 8px; }
+.xw-tool {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  background: var(--bg-canvas);
+  border: 1px solid var(--border-subtle);
+  border-radius: 2px;
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--ink-card);
+  cursor: pointer;
+  transition: border-color 0.2s ease;
+}
+.xw-tool:hover { border-color: var(--ink-card); }
+.xw-tool__count {
+  min-width: 20px;
+  padding: 1px 5px;
+  background: var(--card-acero);
+  border-radius: 2px;
+  font-size: 12px;
+  font-weight: 700;
+  text-align: center;
+}
+.xw-verify { margin-top: 0; padding: 12px 24px; white-space: nowrap; }
+.xw-tool { white-space: nowrap; }
+
+/* Listas de pistas */
+.xw-clue-group + .xw-clue-group { margin-top: 32px; }
+.xw-clue-group__title {
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--text-primary);
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+.xw-clue-list { margin: 0; padding: 0; list-style: none; }
+.xw-clue {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  padding: 11px 12px;
+  border-left: 3px solid transparent;
+  font-size: 15px;
+  line-height: 21px;
+  cursor: pointer;
+}
+.xw-clue:hover { background: #F7F7F7; }
+.xw-clue__num { min-width: 18px; font-weight: 700; text-align: right; }
+.xw-clue--active {
+  background: #F0F5F8;
+  border-left-color: #1F6CA8;
+}
+.xw-clue--active .xw-clue__num { color: #1F6CA8; }
+.xw-clue--done { color: var(--text-secondary); }
+.xw-clue--done .xw-clue__text { text-decoration: line-through; }
+.xw-clue__check { margin-left: auto; align-self: center; color: #177245; }
+
+/* Modal reto completado */
+.xw-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(15, 33, 36, 0.5);
+}
+.xw-modal[hidden] { display: none; }
+.xw-modal__panel {
+  position: relative;
+  width: min(440px, calc(100vw - 32px));
+  padding: 48px 40px 40px;
+  background: var(--bg-canvas);
+  border-radius: 4px;
+  text-align: center;
+}
+.xw-modal__badge { position: absolute; top: 16px; right: 16px; }
+.xw-modal__title {
+  font-family: var(--font-serif);
+  font-weight: 700;
+  font-size: 28px;
+  letter-spacing: -0.4px;
+}
+.xw-modal__points {
+  margin-top: 8px;
+  font-family: var(--font-serif);
+  font-weight: 700;
+  font-size: 22px;
+  color: #177245;
+}
+.xw-modal__stats {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  margin: 24px 0 16px;
+}
+.xw-modal__stats div { display: flex; flex-direction: column; gap: 2px; }
+.xw-modal__stats strong { font-family: var(--font-serif); font-size: 24px; }
+.xw-modal__stats span { font-size: 13px; color: var(--text-secondary); }
+.xw-modal__sub { font-size: 14px; color: var(--text-secondary); }
+.xw-modal__actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  margin-top: 24px;
+}
+.xw-modal__actions .btn-dark { margin-top: 0; }
+
+/* Responsive: pilas en tablet/mobile */
+@media (max-width: 1199px) {
+  .xw-layout { grid-template-columns: 1fr; }
+  .xw-board { max-width: 560px; }
+}
+@media (max-width: 599px) {
+  .xw-stats { flex-wrap: wrap; }
+  .xw-toolbar { flex-direction: column; align-items: stretch; }
+  .xw-toolbar__tools { justify-content: center; flex-wrap: wrap; }
+  .xw-verify { width: 100%; }
+}
+
+
+/* ==========================================================================
    FOOTER
    ========================================================================== */
 
