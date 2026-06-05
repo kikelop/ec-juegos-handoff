@@ -443,12 +443,36 @@ img { display: block; }
     transform: scale(1.01);
     transition-duration: 0.15s;
   }
+
+  /* La card de Reto diario del interior hereda el mismo efecto */
+  .mode-card--reto {
+    transition:
+      transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+      box-shadow 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .mode-card--reto .mode-card__inner {
+    transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .mode-card--reto:hover {
+    transform: translateY(-4px);
+    box-shadow:
+      0 10px 20px -10px rgba(15, 33, 36, 0.14),
+      0 2px 6px rgba(15, 33, 36, 0.04);
+  }
+  .mode-card--reto:hover .mode-card__inner { transform: scale(1.035); }
+  .mode-card--reto:active {
+    transform: translateY(-1px);
+    transition-duration: 0.15s;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .game-card,
-  .game-card__inner { transition: none; }
-  .game-card:hover .game-card__inner { transform: none; }
+  .game-card__inner,
+  .mode-card--reto,
+  .mode-card__inner { transition: none; }
+  .game-card:hover .game-card__inner,
+  .mode-card--reto:hover .mode-card__inner { transform: none; }
 }
 
 
@@ -495,9 +519,16 @@ img { display: block; }
   border-radius: 2px;
   color: var(--ink-card);
 }
+.mode-card--reto { cursor: pointer; }
 .mode-card--libre {
   background: var(--bg-canvas);
   border: 1px solid var(--border-subtle);
+}
+.mode-card__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
 }
 .mode-card__icon { margin-bottom: 8px; }
 .mode-card__title {

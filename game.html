@@ -61,10 +61,12 @@
 
           <!-- Reto diario: una dificultad fija que rota por día. Sin modal. -->
           <article class="mode-card mode-card--reto" id="reto-card">
-            <span class="mode-card__icon"><img src="svg/reto-diario.svg" width="87" height="87" alt=""></span>
-            <h2 class="mode-card__title">Reto diario</h2>
-            <p class="mode-card__copy" id="reto-copy">El mismo reto para todos los lectores.<br>Suma 10 puntos.</p>
-            <button class="btn-dark" id="reto-cta" type="button">Jugar el reto de hoy</button>
+            <div class="mode-card__inner">
+              <span class="mode-card__icon"><img src="svg/reto-diario.svg" width="87" height="87" alt=""></span>
+              <h2 class="mode-card__title">Reto diario</h2>
+              <p class="mode-card__copy" id="reto-copy">El mismo reto para todos los lectores.<br>Suma 10 puntos.</p>
+              <button class="btn-dark" id="reto-cta" type="button">Jugar el reto de hoy</button>
+            </div>
           </article>
 
           <!-- Partida libre: dificultad inline (mismo patrón que el reto), no puntúa -->
@@ -171,7 +173,8 @@
       if (game.reto) {
         if (state.done[slug]) showBadge();
 
-        cta.addEventListener('click', function () {
+        /* Toda la card es clickable (el CTA burbujea al mismo handler) */
+        retoCard.addEventListener('click', function () {
           showSlot(game.name + ' · Reto diario · ' + level[0], true);
         });
 

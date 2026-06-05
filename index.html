@@ -193,7 +193,7 @@
         var slug = (card.getAttribute('href') || '').split('juego=')[1];
         if (!state.done[slug]) return;
         card.classList.add('game-card--done');
-        card.querySelector('.game-card__status').textContent = 'Completado';
+        card.querySelector('.game-card__status').textContent = 'Reto completado';
         var badge = document.createElement('span');
         badge.className = 'game-card__badge';
         badge.setAttribute('aria-hidden', 'true');
